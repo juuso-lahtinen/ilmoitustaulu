@@ -1,4 +1,4 @@
-alla komennot joilla luoda testitietokanta.
+below commands to create a MySQL database...
 
 --------------
 
@@ -30,3 +30,26 @@ CREATE TABLE time(
 );
 
 -------
+below commands to run with MySQL database for searches to see if database works normally..
+
+SELECT nickname
+FROM user
+INNER JOIN post
+ON user.user_id = post.user_id
+WHERE post.user_id = 1;
+
+SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id
+FROM user
+INNER JOIN post
+ON user.user_id = post.user_id
+INNER JOIN time
+ON time.post_id = post.post_id
+WHERE user.user_id = 1;
+
+SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id
+FROM user
+INNER JOIN post
+ON user.user_id = post.user_id
+INNER JOIN time
+ON time.post_id = post.post_id
+WHERE user.nickname = 'Batman';

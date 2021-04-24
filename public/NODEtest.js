@@ -12,7 +12,7 @@ app.use(cors());
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "godsonly00",
     database: "test_db"
 });
 
@@ -43,6 +43,37 @@ app.post("/api/testingPost", urlencodedParser, function (req, res) {
     // make updates to the database
     let responseString = JSON.stringify(jsonObj)
     res.send("POST succesful: "+ responseString);
+});
+
+//GET method for searching the database. (This search is done with using the user's id as the search value)
+app.get("/api/GET", urlencodedParser, function (req, res) {
+    console.log("Got a GET request for the homepage!");
+    var string;
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+
+    //SQL-query with user's user_id. returns all values from all tables associated with the id.
+    var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
+    + " FROM user "
+    + " INNER JOIN post ON user.user_id = post.user_id "
+    + " INNER JOIN time ON time.post_id = post.post_id "
+    + " WHERE user.user_id = ? ";
+
+    (async () => {
+        try {
+            const rows = await query(sql,[jsonObj.user_id]);
+            string = JSON.stringify(rows);
+            var alteredResult = '{"resultInJson":'+string+'}';
+            console.log(rows);
+            res.send(alteredResult);
+        }
+        catch (err) {
+            console.log("Database error!"+ err);
+        }
+        finally {//conn.end();
+        }
+    })()
 });
 
 
@@ -81,6 +112,43 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
         }
         catch (err) {
             console.log("insertion into database failed!.." + err);
+            console.log("Database error!"+ err);
+        }
+    })()
+});
+
+//method for deleting a user from database and all associated posts
+//deletion is done from all three tables (user,post,time)
+app.post("/api/DELETE", urlencodedParser, function (req, res) {
+    console.log("Got a DELETE request for the homepage");
+    console.log("body: %j", req.body);
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+    console.log("Arvo: " + jsonObj.id_value);
+
+
+    (async () => {
+        try {
+
+            //below deleting from all three tables
+            //delete from table user, post, time
+            sql = "DELETE FROM time"
+                + " WHERE time.post_id = ? "
+            await query(sql,[jsonObj.id_value]);
+
+            sql = "DELETE FROM post"
+                + " WHERE post.user_id = ? "
+            await query(sql,[jsonObj.id_value]);
+
+            var sql = "DELETE FROM user"
+                + " WHERE user_id = ? "
+            await query(sql,[jsonObj.id_value]);
+
+            res.send("deleting successful " + req.body);
+        }
+        catch (err) {
+            console.log("deleting from database failed!.." + err);
             console.log("Database error!"+ err);
         }
     })()
