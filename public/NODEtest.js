@@ -12,7 +12,7 @@ app.use(cors());
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "godsonly00",
+    password: "omega3",
     database: "test_db"
 });
 
@@ -98,6 +98,38 @@ app.get("/api/GET", urlencodedParser, function (req, res) {
             var alteredResult = '{"resultInJson":'+string+'}';
             console.log(rows);
             res.send(alteredResult);
+        }
+        catch (err) {
+            console.log("Database error!"+ err);
+        }
+        finally {//conn.end();
+        }
+    })()
+});
+
+//GET method for searching the database.
+app.get("/api/getallposts", urlencodedParser, function (req, res) {
+    console.log("Got a GET request for the homepage!");
+    var string;
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+
+    //SQL-query with user's user_id. returns all values from all tables associated with the id.
+    var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
+        + " FROM user "
+        + " INNER JOIN post ON user.user_id = post.user_id "
+        + " INNER JOIN time ON time.post_id = post.post_id ";
+
+    (async () => {
+        try {
+            const rows = await query(sql);
+            string = JSON.stringify(rows);
+            var alteredResult = '{"resultInJson":'+string+'}';
+            console.log(rows);
+
+
+            res.send(string);
         }
         catch (err) {
             console.log("Database error!"+ err);
