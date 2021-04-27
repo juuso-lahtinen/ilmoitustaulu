@@ -5,13 +5,31 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="testataan committia" />
+    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/NODEtest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/NODEtest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vuetest/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vuetest/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/src/App.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1rZcHY5ihijqwHOZzXQzVqiTNPZ" />
@@ -21,8 +39,35 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Anon1\WebstormProjects\ilmoitustaulu\vuetest\components" />
+      <recent name="C:\Users\Anon1\WebstormProjects\ilmoitustaulu\vuetest" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.NODEtest.js">
+    <configuration name="PostComponent.vue" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ilmoitustaulu/vuetest/components/PostComponent.vue" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="VUEtest.vue" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ilmoitustaulu/vuetest/VUEtest.vue" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="NODEtest.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/public/NODEtest.js" working-dir="$PROJECT_DIR$/public">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.NODEtest.js" />
+        <item itemvalue="JavaScript Debug.PostComponent.vue" />
+        <item itemvalue="JavaScript Debug.VUEtest.vue" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -33,6 +78,9 @@
       <option name="presentableId" value="Default" />
       <updated>1619186964462</updated>
       <workItem from="1619186965511" duration="334000" />
+      <workItem from="1619300696196" duration="3099000" />
+      <workItem from="1619438191295" duration="10110000" />
+      <workItem from="1619528724728" duration="361000" />
     </task>
     <task id="LOCAL−00001" summary="testataan committia">
       <created>1619187118222</created>
@@ -40,7 +88,14 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1619187118222</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein...">
+      <created>1619290081998</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619290081998</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -56,9 +111,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testataan committia" />
-    <option name="LAST_COMMIT_MESSAGE" value="testataan committia" />
+    <MESSAGE value="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein..." />
+    <option name="LAST_COMMIT_MESSAGE" value="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein..." />
   </component>
 </project>

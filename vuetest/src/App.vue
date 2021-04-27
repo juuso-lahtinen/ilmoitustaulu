@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Submit Form Data to API</h1>
+    <PostComponent/>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/Main.vue'
+import PostComponent from "../components/PostComponent";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    PostComponent
   }
-}
+};
 </script>
 
 <style>

@@ -35,7 +35,7 @@ app.get('/commentPage', function (req,res) {
 });
 
 //POST method for testing database commands in Postman
-app.post("/api/testingPost", urlencodedParser, function (req, res) {
+app.post("/api/event", urlencodedParser, function (req, res) {
     console.log("body: %j", req.body);
     // get JSON-object from the http-body
     let jsonObj = req.body;
@@ -44,6 +44,37 @@ app.post("/api/testingPost", urlencodedParser, function (req, res) {
     let responseString = JSON.stringify(jsonObj)
     res.send("POST succesful: "+ responseString);
 });
+
+
+
+    app.post("/api/POSTtest", urlencodedParser, function (req, res) {
+        console.log("Got a POST request for the homepage");
+        console.log("body: %j", req.body);
+
+        //get JSON-object from the http-body
+        var jsonObj = req.body;
+        console.log("Arvo: " + jsonObj.nickName + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timeStamp + " " +jsonObj.counter);
+
+
+        (async () => {
+            try {
+                //insert into table user
+                var sql = "INSERT INTO user (nickname)"
+                    + " VALUES (?)";
+                await query(sql,[jsonObj.nickname]);           //insert into table post
+                sql = "INSERT INTO post (comment)"
+                    + " VALUES (?)";
+                await query(sql,[jsonObj.comment]);
+
+
+                res.send("Post successful " + req.body);
+            }
+            catch (err) {
+                console.log("insertion into database failed!.." + err);
+                console.log("Database error!"+ err);
+            }
+        })()
+    });
 
 //GET method for searching the database. (This search is done with using the user's id as the search value)
 app.get("/api/GET", urlencodedParser, function (req, res) {
