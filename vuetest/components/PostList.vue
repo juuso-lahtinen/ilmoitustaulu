@@ -6,6 +6,7 @@
       <tbody>
       <tr v-for="post in posts" :key="post.id">
         <td>{{ post.comment }}</td>
+        <td>{{ post.nickName }}</td>
       </tr>
       </tbody>
     </table>

@@ -5,12 +5,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti">
+    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="Tehty vue-versio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/NODEtest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/NODEtest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/components/PostForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/components/PostForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuetest/components/PostList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/components/PostList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +95,7 @@
       <workItem from="1619606538844" duration="1419000" />
       <workItem from="1619622653287" duration="13258000" />
       <workItem from="1619637257976" duration="467000" />
-      <workItem from="1619643487050" duration="4611000" />
+      <workItem from="1619643487050" duration="8616000" />
     </task>
     <task id="LOCAL−00001" summary="testataan committia">
       <created>1619187118222</created>
@@ -118,7 +116,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1619556802713</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="Tehty vue-versio">
+      <created>1619694800933</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1619694800933</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,7 +144,8 @@
     <MESSAGE value="testataan committia" />
     <MESSAGE value="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein..." />
     <MESSAGE value="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti" />
-    <option name="LAST_COMMIT_MESSAGE" value="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti" />
+    <MESSAGE value="Tehty vue-versio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tehty vue-versio" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1230" y="644" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619553916161">
@@ -151,26 +156,26 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="949" y="518" key="FileChooserDialogImpl/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527126711" />
-    <state width="1882" height="367" key="GridCell.Tab.0.bottom" timestamp="1619694671388">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1899" height="106" key="GridCell.Tab.0.bottom" timestamp="1619697643432">
+      <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
-    <state width="1899" height="367" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
-    <state width="1882" height="367" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
-    <state width="1882" height="367" key="GridCell.Tab.0.center" timestamp="1619694671388">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1899" height="106" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619697643432" />
+    <state width="1882" height="367" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619695381915" />
+    <state width="1899" height="106" key="GridCell.Tab.0.center" timestamp="1619697643432">
+      <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
-    <state width="1899" height="367" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
-    <state width="1882" height="367" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
-    <state width="1882" height="367" key="GridCell.Tab.0.left" timestamp="1619694671388">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1899" height="106" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619697643432" />
+    <state width="1882" height="367" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619695381915" />
+    <state width="1899" height="106" key="GridCell.Tab.0.left" timestamp="1619697643432">
+      <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
-    <state width="1899" height="367" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
-    <state width="1882" height="367" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
-    <state width="1882" height="367" key="GridCell.Tab.0.right" timestamp="1619694671388">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1899" height="106" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619697643432" />
+    <state width="1882" height="367" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619695381915" />
+    <state width="1899" height="106" key="GridCell.Tab.0.right" timestamp="1619697643432">
+      <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
-    <state width="1899" height="367" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
-    <state width="1882" height="367" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
+    <state width="1899" height="106" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619697643432" />
+    <state width="1882" height="367" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619695381915" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1619636649440">
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
@@ -223,11 +228,11 @@
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
     <state x="-1459" y="542" key="SettingsEditor/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619637396101" />
-    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2" timestamp="1619556806051">
+    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2" timestamp="1619698201796">
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
-    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619556806051" />
-    <state x="1060" y="541" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619523428400" />
+    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619698201796" />
+    <state x="1060" y="541" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694804347" />
     <state x="-1253" y="496" width="585" height="801" key="find.popup" timestamp="1619627073475">
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
