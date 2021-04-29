@@ -5,16 +5,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein...">
-      <change afterPath="$PROJECT_DIR$/vuetest/components/PostForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vuetest/components/PostList.vue" afterDir="false" />
+    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/NODEtest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/NODEtest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/components/PostComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vuetest/components/PostForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/components/PostForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vuetest/components/PostList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/components/PostList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuetest/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/src/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/src/components/Main.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +49,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -95,7 +92,12 @@
       <workItem from="1619300696196" duration="3099000" />
       <workItem from="1619438191295" duration="10110000" />
       <workItem from="1619528724728" duration="361000" />
-      <workItem from="1619547947899" duration="8595000" />
+      <workItem from="1619547947899" duration="9633000" />
+      <workItem from="1619559377179" duration="1572000" />
+      <workItem from="1619606538844" duration="1419000" />
+      <workItem from="1619622653287" duration="13258000" />
+      <workItem from="1619637257976" duration="467000" />
+      <workItem from="1619643487050" duration="4611000" />
     </task>
     <task id="LOCAL−00001" summary="testataan committia">
       <created>1619187118222</created>
@@ -110,7 +112,13 @@
       <option name="project" value="LOCAL" />
       <updated>1619290081998</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti">
+      <created>1619556802713</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1619556802713</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +139,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testataan committia" />
     <MESSAGE value="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein..." />
-    <option name="LAST_COMMIT_MESSAGE" value="tietokannan hallintaa työstetty (luotu GET ja DELETE komennot NODEtest.js tiedostoon..). muutamia kyselyitä tallennettu test_db_MySQL.txt tiedostoon jos haluaa itsenäisesti suorittaa kyselyitä tietokantaan katsoakseen että henk. koht tietokanta toimii oikein..." />
+    <MESSAGE value="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti" />
+    <option name="LAST_COMMIT_MESSAGE" value="Työstetty tietokannan käyttämistä lomakkeella erroriin &quot;Unexpected token P in JSON at position 0&quot; asti" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1230" y="644" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619553916161">
@@ -142,29 +151,86 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="949" y="518" key="FileChooserDialogImpl/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527126711" />
-    <state width="949" height="293" key="GridCell.Tab.0.bottom" timestamp="1619556615565">
-      <screen x="-1920" y="357" width="1920" height="1080" />
-    </state>
-    <state width="949" height="293" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619556615565" />
-    <state width="1035" height="269" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527128013" />
-    <state width="949" height="293" key="GridCell.Tab.0.center" timestamp="1619556615565">
-      <screen x="-1920" y="357" width="1920" height="1080" />
-    </state>
-    <state width="949" height="293" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619556615565" />
-    <state width="1035" height="269" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527128013" />
-    <state width="949" height="293" key="GridCell.Tab.0.left" timestamp="1619556615565">
-      <screen x="-1920" y="357" width="1920" height="1080" />
-    </state>
-    <state width="949" height="293" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619556615565" />
-    <state width="1035" height="269" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527128013" />
-    <state width="949" height="293" key="GridCell.Tab.0.right" timestamp="1619556615565">
-      <screen x="-1920" y="357" width="1920" height="1080" />
-    </state>
-    <state width="949" height="293" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619556615565" />
-    <state width="1035" height="269" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527128013" />
-    <state x="1060" y="541" key="Vcs.Push.Dialog.v2" timestamp="1619523428400">
+    <state width="1882" height="367" key="GridCell.Tab.0.bottom" timestamp="1619694671388">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state width="1899" height="367" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
+    <state width="1882" height="367" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
+    <state width="1882" height="367" key="GridCell.Tab.0.center" timestamp="1619694671388">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1899" height="367" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
+    <state width="1882" height="367" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
+    <state width="1882" height="367" key="GridCell.Tab.0.left" timestamp="1619694671388">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1899" height="367" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
+    <state width="1882" height="367" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
+    <state width="1882" height="367" key="GridCell.Tab.0.right" timestamp="1619694671388">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1899" height="367" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619645887566" />
+    <state width="1882" height="367" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619694671388" />
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.1.center" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.1.left" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.2.bottom" timestamp="1619636649441">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.2.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649441" />
+    <state width="1877" height="363" key="GridCell.Tab.2.center" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.2.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.2.left" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.2.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.2.right" timestamp="1619636649440">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.2.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649440" />
+    <state width="1877" height="363" key="GridCell.Tab.3.bottom" timestamp="1619636649441">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.3.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649441" />
+    <state width="1877" height="363" key="GridCell.Tab.3.center" timestamp="1619636649441">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.3.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649441" />
+    <state width="1877" height="363" key="GridCell.Tab.3.left" timestamp="1619636649441">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.3.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649441" />
+    <state width="1877" height="363" key="GridCell.Tab.3.right" timestamp="1619636649441">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="363" key="GridCell.Tab.3.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619636649441" />
+    <state x="-1459" y="542" key="SettingsEditor" timestamp="1619637396101">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state x="-1459" y="542" key="SettingsEditor/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619637396101" />
+    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2" timestamp="1619556806051">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619556806051" />
     <state x="1060" y="541" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619523428400" />
+    <state x="-1253" y="496" width="585" height="801" key="find.popup" timestamp="1619627073475">
+      <screen x="-1920" y="357" width="1920" height="1080" />
+    </state>
+    <state x="-1253" y="496" width="585" height="801" key="find.popup/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619627073475" />
   </component>
 </project>

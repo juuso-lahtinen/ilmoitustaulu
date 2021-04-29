@@ -7,6 +7,9 @@ var util = require('util'); // for async calls
 var cors = require('cors');
 var bodyParser = require('body-parser'); // Create application/x-www-form-urlencoded parser (for POST)
 app.use(cors());
+'use strict';
+
+
 
 //tsekkaa et alla on oikeet tiedot host,user,password,database
 const conn = mysql.createConnection({
@@ -61,7 +64,7 @@ app.post("/api/event", urlencodedParser, function (req, res) {
                 //insert into table user
                 var sql = "INSERT INTO user (nickname)"
                     + " VALUES (?)";
-                await query(sql,[jsonObj.nickname]);           //insert into table post
+                await query(sql,[jsonObj.nickName]);           //insert into table post
                 sql = "INSERT INTO post (comment)"
                     + " VALUES (?)";
                 await query(sql,[jsonObj.comment]);
@@ -111,25 +114,28 @@ app.get("/api/GET", urlencodedParser, function (req, res) {
 app.get("/api/getallposts", urlencodedParser, function (req, res) {
     console.log("Got a GET request for the homepage!");
     var string;
+    console.log("getallposts1:");
 
-    //get JSON-object from the http-body
-    var jsonObj = req.body;
+    let sql = " SELECT post.comment FROM post";
 
     //SQL-query with user's user_id. returns all values from all tables associated with the id.
-    var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
+    /*var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
         + " FROM user "
         + " INNER JOIN post ON user.user_id = post.user_id "
         + " INNER JOIN time ON time.post_id = post.post_id ";
+
+     */
+
 
     (async () => {
         try {
             const rows = await query(sql);
             string = JSON.stringify(rows);
             var alteredResult = '{"resultInJson":'+string+'}';
-            console.log(rows);
+            console.log("getallposts:" + string);
 
 
-            res.send(string);
+            res.send(rows);
         }
         catch (err) {
             console.log("Database error!"+ err);
@@ -157,21 +163,29 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
                 + " VALUES (?)";
             await query(sql,[jsonObj.nickName]);
 
-            //get the counter value for user_id
-            var insertId = req.body.counter;
+            sql = " SELECT user.user_id FROM user ORDER BY user.nickname DESC LIMIT 1";
+            let userid = await query(sql);
+            userid = JSON.stringify(userid);
+            userid = userid.split(':').pop().replace(/[^0-9]/g,'');
+            console.log("userid: " + userid);
+
             //insert into table post
             sql = "INSERT INTO post (comment, user_id)"
                 + " VALUES (?,?)";
-            await query(sql,[jsonObj.comment, insertId]);
+            await query(sql,[jsonObj.comment, userid]);
 
-            //counter value for post_id
-            insertId = req.body.counter;
+            sql = " SELECT post.post_id FROM post ORDER BY post_id DESC LIMIT 1";
+            let postid = await query(sql);
+            postid = JSON.stringify(postid);
+            postid = postid.split(':').pop().replace(/[^0-9]/g,'');
+            console.log("postid: " + postid);
+
             //insert into table time
             sql = "INSERT INTO time (date, timestamp, post_id)"
                 + " VALUES (?,?,?)";
-            await query(sql,[jsonObj.date, jsonObj.timeStamp, insertId]);
+            await query(sql,[jsonObj.date, jsonObj.timeStamp, postid]);
 
-            res.send("Post successful " + req.body);
+            //res.send("Post successful " + req.body);
         }
         catch (err) {
             console.log("insertion into database failed!.." + err);
@@ -179,6 +193,8 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
         }
     })()
 });
+
+
 
 //method for deleting a user from database and all associated posts
 //deletion is done from all three tables (user,post,time)

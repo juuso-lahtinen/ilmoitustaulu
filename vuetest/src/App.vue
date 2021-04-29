@@ -1,81 +1,105 @@
 <template>
-  <div id="app">
-    <h1>Submit Form Data to API</h1>
-    <post-list v-bind:posts="posts" />
+  <div
+      id="app"
+      class="small-container"
+  >
+    <h1>Posts</h1>
+
     <post-form @add:post="addPost" />
+    <post-list
+        :posts="posts"
+        @delete:post="deletePost"
+        @edit:post="editPost"
+    />
   </div>
 </template>
-<script>
-import PostList from "../components/PostList";
-import PostForm from "../components/PostForm"
 
+<script>
+import PostList from '../components/PostList.vue'
+import PostForm from '../components/PostForm.vue'
 export default {
-  name: 'App',
+  name: "app",
   components: {
     PostList,
-    PostForm
+    PostForm,
   },
   data() {
     return {
-      posts: [],
+      posts: []
     }
   },
-
-  mounted() { //tekee vasta kun komponentti DOMissa
+  mounted() {
     this.getPosts()
   },
-
   methods: {
-    /*
-    addPost(post) {   //väliaikainen id:n generointi, pitää oikeasti hakea tietokannasta
-      const lastId =
-          this.posts.length > 0
-              ? this.posts[this.posts.length - 1].id
-              : 0;
-      const id = lastId + 1;
-      const newPost = { ...post, id };
-
-      this.posts = [...this.posts, newPost]
-    },
-     */
     async getPosts() {
       try {
         const response = await fetch('http://localhost:8081/api/getallposts')
-        this.posts = await response.json()
+        const data = await response.json()
+        this.posts = data
+        console.log("kaikki " + data)
       } catch (error) {
         console.error(error)
       }
     },
     async addPost(post) {
+      console.log("addpost");
       try {
         const response = await fetch('http://localhost:8081/api/POST', {
           method: 'POST',
           body: JSON.stringify(post),
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json; charset=UTF-8",
-            'Access-Control-Allow-Origin' : '*'
-          }
+          headers: { "Content-type": "application/json; charset=UTF-8" }
         })
+        console.log("addpost2");
+
         const data = await response.json()
+        console.log("addpost3 " + data);
         this.posts = [...this.posts, data]
+
+
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+    async editPost(id, updatedPost) {
+      try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+          method: 'PUT',
+          body: updatedPost,
+          headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+        const data = await response.json()
+        this.posts = this.posts.map(post => post.id === id ? data : post)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deletePost(id) {
+      try {
+        await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+          method: 'DELETE'
+        })
+        this.posts = this.posts.filter(post => post.id !== id)
+      } catch (error) {
+        console.error(error)
+      }
+    },
   },
 }
-
-
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+button {
+  background: #009435;
+  border: 1px solid #009435;
+}
+button:hover,
+button:active,
+button:focus {
+  background: #32a95d;
+  border: 1px solid #32a95d;
+}
+.small-container {
+  max-width: 680px;
 }
 </style>
