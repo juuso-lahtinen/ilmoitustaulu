@@ -43,17 +43,14 @@ export default {
       }
     },
     async addPost(post) {
-      console.log("addpost");
       try {
         const response = await fetch('http://localhost:8081/api/POST', {
           method: 'POST',
           body: JSON.stringify(post),
           headers: { "Content-type": "application/json; charset=UTF-8" }
         })
-        console.log("addpost2");
 
         const data = await response.json()
-        console.log("addpost3 " + data);
         this.posts = [...this.posts, data]
 
 
