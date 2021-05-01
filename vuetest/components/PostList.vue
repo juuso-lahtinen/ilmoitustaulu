@@ -6,7 +6,9 @@
       <tbody>
       <tr v-for="post in posts" :key="post.id">
         <td>{{ post.comment }}</td>
-        <td>{{ post.nickName }}</td>
+        <td>{{ post.nickname }}</td>
+        <td>{{ post.date }}</td>
+        <td>{{ post.timestamp }}</td>
       </tr>
       </tbody>
     </table>
@@ -34,7 +36,7 @@ export default {
       this.editing = null;
     },
     editPost(post) {
-      if (post.nickName === '' || post.comment === '') return
+      if (post.nickname === '' || post.comment === '') return
       this.$emit('edit:post', post.id, post)
       this.editing = null
     }
