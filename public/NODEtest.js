@@ -156,31 +156,32 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
             //insert into table user
             var sql = "INSERT INTO user (nickname)"
                 + " VALUES (?)";
-            await query(sql,[jsonObj.nickName]);
+            await query(sql,[jsonObj.nickname]);
+            res.send(req.body);
 
             sql = " SELECT user.user_id FROM user ORDER BY user.user_id DESC LIMIT 1";
             let userid = await query(sql);
             userid = JSON.stringify(userid);
             userid = userid.split(':').pop().replace(/[^0-9]/g,'');
-            console.log("userid: " + userid);
 
             //insert into table post
             sql = "INSERT INTO post (comment, user_id)"
                 + " VALUES (?,?)";
             await query(sql,[jsonObj.comment, userid]);
+            res.send(req.body);
 
             sql = " SELECT post.post_id FROM post ORDER BY post_id DESC LIMIT 1";
             let postid = await query(sql);
             postid = JSON.stringify(postid);
             postid = postid.split(':').pop().replace(/[^0-9]/g,'');
-            console.log("postid: " + postid);
+
 
             //insert into table time
             sql = "INSERT INTO time (date, timestamp, post_id)"
                 + " VALUES (?,?,?)";
             await query(sql,[jsonObj.date, jsonObj.timeStamp, postid]);
-
-            //res.send("Post successful " + req.body);
+            console.log("post test3 " + req.body)
+            res.send(req.body);
         }
         catch (err) {
             console.log("insertion into database failed!.." + err);

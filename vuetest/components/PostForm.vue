@@ -7,7 +7,7 @@
           ref="first"
           type="text"
           :class="{ 'has-error': submitting && invalidName }"
-          v-model="post.nickName"
+          v-model="post.nickname"
           @focus="clearStatus"
           @keypress="clearStatus"
       >
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     invalidName() {
-      return this.post.nickName === ''
+      return this.post.nickname === ''
     },
     invalidComment() {
       return this.post.comment === ''

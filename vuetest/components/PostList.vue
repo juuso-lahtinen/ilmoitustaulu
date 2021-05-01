@@ -1,14 +1,19 @@
-
 <template>
   <div id="post-list">
+    <p
+        v-if="posts.length < 1"
+        class="empty-table"
+    >
+      No posts
+    </p>
     <table>
-      <!-- ...thead... -->
       <tbody>
-      <tr v-for="post in posts" :key="post.id">
-        <td>{{ post.comment }}</td>
-        <td>{{ post.nickname }}</td>
-        <td>{{ post.date }}</td>
-        <td>{{ post.timestamp }}</td>
+      <tr
+          :key="post.id"
+          v-for="post in posts"
+      >
+        <td>{{post.nickname}}</td>
+        <td>{{post.comment}}</td>
       </tr>
       </tbody>
     </table>
