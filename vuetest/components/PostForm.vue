@@ -41,7 +41,7 @@ export default {
       submitting: false,
       success: false,
       post: {
-        nickName: '',
+        nickname: '',
         comment: '',
         date: new Date().toISOString().split('T')[0],
         timeStamp: new Date().toTimeString().slice(0,8),
@@ -67,7 +67,7 @@ export default {
       this.$emit('add:post', this.post)
       this.$refs.first.focus()
       this.post = {
-        nickName: '',
+        nickname: '',
         comment: '',
         date: new Date().toISOString().split('T')[0],
         timeStamp: new Date().toTimeString().slice(0,8),

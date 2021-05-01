@@ -116,26 +116,21 @@ app.get("/api/getallposts", urlencodedParser, function (req, res) {
     var string;
     console.log("getallposts1:");
 
-    let sql = " SELECT post.comment FROM post";
-
     //SQL-query with user's user_id. returns all values from all tables associated with the id.
-    /*var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
+    var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
         + " FROM user "
         + " INNER JOIN post ON user.user_id = post.user_id "
         + " INNER JOIN time ON time.post_id = post.post_id ";
 
-     */
+
 
 
     (async () => {
         try {
             const rows = await query(sql);
             string = JSON.stringify(rows);
-            var alteredResult = '{"resultInJson":'+string+'}';
-            console.log("getallposts:" + string);
-
-
-            res.send(rows);
+            console.log(string);
+            res.send(string);
         }
         catch (err) {
             console.log("Database error!"+ err);
@@ -163,7 +158,7 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
                 + " VALUES (?)";
             await query(sql,[jsonObj.nickName]);
 
-            sql = " SELECT user.user_id FROM user ORDER BY user.nickname DESC LIMIT 1";
+            sql = " SELECT user.user_id FROM user ORDER BY user.user_id DESC LIMIT 1";
             let userid = await query(sql);
             userid = JSON.stringify(userid);
             userid = userid.split(':').pop().replace(/[^0-9]/g,'');
