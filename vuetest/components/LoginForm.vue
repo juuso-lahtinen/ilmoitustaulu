@@ -1,22 +1,31 @@
 <template>
+
   <div id="login-form">
+
     <form @submit.prevent="handleSubmit">
 
-      <label>Username</label>
+      <label class="px-2">Username</label>
       <input
+          class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
+
           ref="first"
           type="text"
           :class="{ 'has-error': submitting && invalidName }"
           v-model="user.nickname"
           @focus="clearStatus"
           @keypress="clearStatus"
+          placeholder="username"
       >
-      <label>Password</label>
+      <label class="px-2">Password</label>
       <input
-          type="text"
+
+          class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
+
+          type="password"
           :class="{ 'has-error': submitting && invalidPassword }"
           v-model="user.password"
           @focus="clearStatus"
+          placeholder="password"
       >
       <p
           v-if="error && submitting"
@@ -26,10 +35,10 @@
           v-if="success"
           class="success-message"
       >✅ Logged in</p>
-      <button>Login</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Login</button>
     </form>
-
   </div>
+
 </template>
 
 <script>

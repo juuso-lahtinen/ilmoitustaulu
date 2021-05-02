@@ -12,7 +12,7 @@
           :key="post.id"
           v-for="post in posts"
       >
-        <td>{{post.nickname}}</td>
+        <td class="text-xl">{{post.nickname}}</td>
         <td>{{post.comment}}</td>
         <td>{{post.timestamp}}</td>
       </tr>

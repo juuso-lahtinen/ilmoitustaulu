@@ -1,13 +1,17 @@
 <template>
   <div id="post-form">
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit"
+        class="w-full relative"
+    >
 
       <label>Post Comment</label>
       <input
-          type="text"
+          class="px-3 py-7 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
+          type="textarea"
           :class="{ 'has-error': submitting && invalidComment }"
           v-model="post.comment"
           @focus="clearStatus"
+          placeholder="write here"
       >
       <p
           v-if="error && submitting"
@@ -17,7 +21,11 @@
           v-if="success"
           class="success-message"
       >✅ Post successfully added</p>
-      <button>Add Post</button>
+      <div class="flex justify-center py-5">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded">
+        Post
+      </button>
+      </div>
     </form>
 
   </div>

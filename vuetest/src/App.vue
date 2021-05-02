@@ -1,18 +1,31 @@
 <template>
-  <div
-      id="app"
-      class="small-container"
-  >
-    <login-form id="login" @login:user="loginUser" />
-    <register-form id="register" @register:user="registerUser" />
-    <h1>Posts</h1>
+  <div>
 
-    <post-form @add:post="addPost" />
-    <post-list
-        :posts="posts"
-        @delete:post="deletePost"
-        @edit:post="editPost"
-    />
+    <!-- Login, Register -->
+    <div class="flex justify-end py-1 mr-5">
+    <login-form id="login" @login:user="loginUser" />
+    </div>
+
+    <div class="flex justify-end mr-5">
+    <register-form id="register" @register:user="registerUser" />
+    </div>
+
+    <!-- Post Form -->
+   <div class="flex justify-center text-5xl py-3"><h1>Posts</h1></div>
+
+    <div class="flex justify-center py-8">
+
+    <post-form @add:post="addPost"/>
+    </div>
+
+    <!-- Post list -->
+    <div class="flex justify-center">
+      <post-list
+          :posts="posts"
+          @delete:post="deletePost"
+          @edit:post="editPost"
+      />
+    </div>
   </div>
 </template>
 
@@ -21,6 +34,7 @@ import PostList from '../components/PostList.vue'
 import PostForm from '../components/PostForm.vue'
 import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from "../components/RegisterForm";
+
 let nickname = "test";
 
 export default {
@@ -156,7 +170,6 @@ function toggleElement(element) {
     x.style.display = "none";
   }
 }
-
 
 </script>
 
