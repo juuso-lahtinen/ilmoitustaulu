@@ -83,9 +83,9 @@ export default {
       }
     },
     async addPost(post) {
-      console.log("kirjautunut: " + nickname)
       post = JSON.stringify(post);
-      post.nickname = nickname;
+      post = post.replace("tyhja", nickname);
+
       try {
         const response = await fetch('http://localhost:8081/api/POST', {
           method: 'POST',

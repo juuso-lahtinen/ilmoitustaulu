@@ -32,7 +32,7 @@ export default {
       submitting: false,
       success: false,
       post: {
-        nickname: this.nickname,
+        nickname: 'tyhja',
         comment: '',
         date: new Date().toISOString().split('T')[0],
         timeStamp: new Date().toTimeString().slice(0,8),
@@ -54,7 +54,7 @@ export default {
       }
       this.$emit('add:post', this.post)
       this.post = {
-        nickname: this.nickname,
+        nickname: 'tyhja',
         comment: '',
         date: new Date().toISOString().split('T')[0],
         timeStamp: new Date().toTimeString().slice(0,8),
