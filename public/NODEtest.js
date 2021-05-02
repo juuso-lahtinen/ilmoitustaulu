@@ -140,6 +140,61 @@ app.get("/api/getallposts", urlencodedParser, function (req, res) {
     })()
 });
 
+function contains(arr, key, val) {
+    for (let i = 0; i < arr.length; i++) {
+        if(arr[i][key] === val) return true;
+    }
+    return false;
+}
+
+//POST method for adding values into database. all tables in use (user,post,time)
+app.post("/api/login", urlencodedParser, function (req, res) {
+    console.log("Logging in");
+    console.log("body: %j", req.body);
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.password);
+
+
+    (async () => {
+        try {
+            //insert into table user
+            var sql = "SELECT * FROM user";
+            let userdb = JSON.stringify(await query(sql));
+            if (contains(userdb, nickname, jsonObj.nickname) && contains(userdb, nickname, jsonObj.nickname)) {
+                res.send(true);
+            } else {
+                res.send(false);
+            }
+        }
+        catch (err) {
+            console.log("login error.." + err);
+        }
+    })()
+});
+
+app.post("/api/register", urlencodedParser, function (req, res) {
+    console.log("Registering");
+    console.log("body: %j", req.body);
+
+    var jsonObj = req.body;
+    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.password);
+
+
+    (async () => {
+        try {
+            var sql = "INSERT INTO user (nickname, password)"
+                + " VALUES (?, ?)";
+            await query(sql,[jsonObj.nickname, jsonObj.password]);
+            console.log("registration success");r
+        }
+        catch (err) {
+            console.log("registration error.." + err);
+        }
+    })()
+});
+
 
 //POST method for adding values into database. all tables in use (user,post,time)
 app.post("/api/POST", urlencodedParser, function (req, res) {
@@ -148,19 +203,17 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
 
     //get JSON-object from the http-body
     var jsonObj = req.body;
-    console.log("Arvo: " + jsonObj.nickName + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timeStamp + " " +jsonObj.counter);
+    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timeStamp + " " +jsonObj.counter);
 
 
     (async () => {
         try {
-            //insert into table user
-            var sql = "INSERT INTO user (nickname)"
-                + " VALUES (?)";
-            await query(sql,[jsonObj.nickname]);
-            res.send(req.body);
+            let sql;
+            console.log("nickname on " + jsonObj.nickname)
 
-            sql = " SELECT user.user_id FROM user ORDER BY user.user_id DESC LIMIT 1";
-            let userid = await query(sql);
+
+            sql = " SELECT user.user_id FROM user WHERE nickname = ? ORDER BY user.user_id DESC LIMIT 1";
+            let userid = await query(sql,[jsonObj.nickname]);
             userid = JSON.stringify(userid);
             userid = userid.split(':').pop().replace(/[^0-9]/g,'');
 

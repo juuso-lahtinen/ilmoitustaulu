@@ -3,6 +3,8 @@
       id="app"
       class="small-container"
   >
+    <login-form @login:user="loginUser" />
+    <register-form @register:user="registerUser" />
     <h1>Posts</h1>
 
     <post-form @add:post="addPost" />
@@ -17,21 +19,59 @@
 <script>
 import PostList from '../components/PostList.vue'
 import PostForm from '../components/PostForm.vue'
+import LoginForm from '../components/LoginForm.vue'
+import RegisterForm from "../components/RegisterForm";
+let nickname = "test";
+
 export default {
   name: "app",
   components: {
     PostList,
     PostForm,
+    LoginForm,
+    RegisterForm,
   },
   data() {
     return {
-      posts: []
+      nickname: nickname,
+      posts: [],
     }
   },
   mounted() {
     this.getPosts()
   },
   methods: {
+    async registerUser(user) {
+      try {
+        await fetch('http://localhost:8081/api/register', {
+          method: 'POST',
+          body: JSON.stringify(user),
+          headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+        nickname = user.nickname;
+
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+
+    async loginUser(user) {
+      try {
+        await fetch('http://localhost:8081/api/login', {
+          method: 'POST',
+          body: JSON.stringify(user),
+          headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+        nickname = "haa";
+        nickname = user.nickname;
+
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+
     async getPosts() {
       try {
         const response = await fetch('http://localhost:8081/api/getallposts')
@@ -43,10 +83,13 @@ export default {
       }
     },
     async addPost(post) {
+      console.log("kirjautunut: " + nickname)
+      post = JSON.stringify(post);
+      post.nickname = nickname;
       try {
         const response = await fetch('http://localhost:8081/api/POST', {
           method: 'POST',
-          body: JSON.stringify(post),
+          body: post,
           headers: { "Content-type": "application/json; charset=UTF-8" }
         })
 
