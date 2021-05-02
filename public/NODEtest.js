@@ -141,38 +141,12 @@ app.get("/api/getallposts", urlencodedParser, function (req, res) {
 });
 
 function contains(arr, key, val) {
+
     for (let i = 0; i < arr.length; i++) {
         if(arr[i][key] === val) return true;
     }
     return false;
 }
-
-//POST method for adding values into database. all tables in use (user,post,time)
-app.post("/api/login", urlencodedParser, function (req, res) {
-    console.log("Logging in");
-    console.log("body: %j", req.body);
-
-    //get JSON-object from the http-body
-    var jsonObj = req.body;
-    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.password);
-
-
-    (async () => {
-        try {
-            //insert into table user
-            var sql = "SELECT * FROM user";
-            let userdb = JSON.stringify(await query(sql));
-            if (contains(userdb, nickname, jsonObj.nickname) && contains(userdb, nickname, jsonObj.nickname)) {
-                res.send(true);
-            } else {
-                res.send(false);
-            }
-        }
-        catch (err) {
-            console.log("login error.." + err);
-        }
-    })()
-});
 
 app.post("/api/register", urlencodedParser, function (req, res) {
     console.log("Registering");
@@ -194,6 +168,40 @@ app.post("/api/register", urlencodedParser, function (req, res) {
         }
     })()
 });
+
+
+
+
+
+//POST method for adding values into database. all tables in use (user,post,time)
+app.post("/api/login", urlencodedParser, function (req, res) {
+    console.log("Logging in");
+    console.log("body: %j", req.body);
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.password);
+
+
+    (async () => {
+        try {
+            //insert into table user
+            var sql = "SELECT * FROM user";
+            let userdb = JSON.stringify(await query(sql));
+            if (contains(userdb, "nickname", jsonObj.nickname) && contains(userdb, "nickname", jsonObj.nickname)) {
+                res.send(true);
+            } else {
+                res.send(false);
+            }
+        }
+        catch (err) {
+            console.log("login error.." + err);
+        }
+    })()
+});
+
+
+
 
 
 //POST method for adding values into database. all tables in use (user,post,time)
