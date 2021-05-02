@@ -3,8 +3,8 @@
       id="app"
       class="small-container"
   >
-    <login-form @login:user="loginUser" />
-    <register-form @register:user="registerUser" />
+    <login-form id="login" @login:user="loginUser" />
+    <register-form id="register" @register:user="registerUser" />
     <h1>Posts</h1>
 
     <post-form @add:post="addPost" />
@@ -43,12 +43,23 @@ export default {
   methods: {
     async registerUser(user) {
       try {
-        await fetch('http://localhost:8081/api/register', {
+        const response = await fetch('http://localhost:8081/api/register', {
           method: 'POST',
           body: JSON.stringify(user),
           headers: { "Content-type": "application/json; charset=UTF-8" }
         })
-        nickname = user.nickname;
+        let data = await response.json();
+        data = JSON.stringify(data);
+
+        console.log("response: " + data);
+        if(data.includes("registersuccess"))  {
+          nickname = user.nickname;
+          toggleElement("login");
+          toggleElement("register");
+        } else  {
+          window.alert("Registration failed! Username already in use");
+        }
+
 
       } catch (error) {
         console.error(error)
@@ -58,13 +69,23 @@ export default {
 
     async loginUser(user) {
       try {
-        await fetch('http://localhost:8081/api/login', {
+        const response = await fetch('http://localhost:8081/api/login', {
           method: 'POST',
           body: JSON.stringify(user),
           headers: { "Content-type": "application/json; charset=UTF-8" }
         })
-        nickname = "haa";
-        nickname = user.nickname;
+        let data = await response.json();
+        data = JSON.stringify(data);
+
+        console.log("response: " + data);
+        if(data.includes("loginsuccess"))  {
+          nickname = user.nickname;
+          toggleElement("login");
+          toggleElement("register");
+        } else  {
+          window.alert("Login failed! User doesn't exist");
+        }
+
 
       } catch (error) {
         console.error(error)
@@ -126,6 +147,17 @@ export default {
     },
   },
 }
+
+function toggleElement(element) {
+  let x = document.getElementById(element);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
 </script>
 
 <style>
