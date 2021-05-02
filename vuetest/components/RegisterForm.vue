@@ -1,12 +1,21 @@
 <template>
-  <div id="post-form">
+  <div id="register-form">
     <form @submit.prevent="handleSubmit">
 
-      <label>Post Comment</label>
+      <label>Username</label>
+      <input
+          ref="first"
+          type="text"
+          :class="{ 'has-error': submitting && invalidName }"
+          v-model="user.nickname"
+          @focus="clearStatus"
+          @keypress="clearStatus"
+      >
+      <label>Password</label>
       <input
           type="text"
-          :class="{ 'has-error': submitting && invalidComment }"
-          v-model="post.comment"
+          :class="{ 'has-error': submitting && invalidPassword }"
+          v-model="user.password"
           @focus="clearStatus"
       >
       <p
@@ -16,8 +25,8 @@
       <p
           v-if="success"
           class="success-message"
-      >✅ Post successfully added</p>
-      <button>Add Post</button>
+      >✅ Registered</p>
+      <button>Register</button>
     </form>
 
   </div>
@@ -25,39 +34,39 @@
 
 <script>
 export default {
-  name: 'post-form',
+  name: 'register-form',
   data() {
     return {
       error: false,
       submitting: false,
       success: false,
-      post: {
-        nickname: 'tyhja',
-        comment: '',
-        date: new Date().toISOString().split('T')[0],
-        timeStamp: new Date().toTimeString().slice(0,8),
+      user: {
+        nickname: '',
+        password: '',
       }
     }
   },
   computed: {
-    invalidComment() {
-      return this.post.comment === ''
+    invalidName() {
+      return this.user.nickname === ''
+    },
+    invalidPassword() {
+      return this.user.password === ''
     },
   },
   methods: {
     handleSubmit() {
       this.clearStatus()
       this.submitting = true
-      if (this.invalidComment) {
+      if (this.invalidName || this.invalidPassword) {
         this.error = true
         return
       }
-      this.$emit('add:post', this.post)
+      this.$emit('register:user', this.user)
+      this.$refs.first.focus()
       this.post = {
-        nickname: 'tyhja',
-        comment: '',
-        date: new Date().toISOString().split('T')[0],
-        timeStamp: new Date().toTimeString().slice(0,8),
+        nickname: '',
+        password: '',
       }
       this.success = true
       this.error = false
@@ -67,8 +76,6 @@ export default {
       this.success = false
       this.error = false
     }
-
-
   }}
 </script>
 

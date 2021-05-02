@@ -14,6 +14,7 @@
       >
         <td>{{post.nickname}}</td>
         <td>{{post.comment}}</td>
+        <td>{{post.timestamp}}</td>
       </tr>
       </tbody>
     </table>
