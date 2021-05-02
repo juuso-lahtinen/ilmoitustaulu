@@ -158,10 +158,27 @@ app.post("/api/register", urlencodedParser, function (req, res) {
 
     (async () => {
         try {
-            var sql = "INSERT INTO user (nickname, password)"
-                + " VALUES (?, ?)";
-            await query(sql,[jsonObj.nickname, jsonObj.password]);
-            console.log("registration success");r
+            let check;
+            let sql = "SELECT * FROM user";
+            let userdb = JSON.stringify(await query(sql));
+            if (userdb.includes(JSON.stringify(jsonObj.nickname))) {
+                check = false;
+            } else {
+                check = true;
+            }
+
+            if(check)   {
+                sql = "INSERT INTO user (nickname, password)"
+                    + " VALUES (?, ?)";
+                await query(sql,[jsonObj.nickname, jsonObj.password]);
+                console.log("registration success");
+                res.status(200).send({message: "registersuccess"});
+            } else  {
+                console.log("registration fail");
+                res.status(200).send({message: "registerfail"});
+            }
+
+
         }
         catch (err) {
             console.log("registration error.." + err);
@@ -179,8 +196,9 @@ app.post("/api/login", urlencodedParser, function (req, res) {
     console.log("body: %j", req.body);
 
     //get JSON-object from the http-body
-    var jsonObj = req.body;
-    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.password);
+    let nickname = JSON.stringify(req.body.nickname);
+    let password = JSON.stringify(req.body.password);
+    console.log("Arvo: " + nickname + " " + password);
 
 
     (async () => {
@@ -188,10 +206,12 @@ app.post("/api/login", urlencodedParser, function (req, res) {
             //insert into table user
             var sql = "SELECT * FROM user";
             let userdb = JSON.stringify(await query(sql));
-            if (contains(userdb, "nickname", jsonObj.nickname) && contains(userdb, "nickname", jsonObj.nickname)) {
-                res.send(true);
+            if (userdb.includes(nickname) && userdb.includes(password)) {
+                res.status(200).send({message: "loginsuccess"});
+                console.log("login success");
             } else {
-                res.send(false);
+                res.status(200).send({message: "loginfail"});
+                console.log("login fail");
             }
         }
         catch (err) {
