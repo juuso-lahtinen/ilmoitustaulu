@@ -32,7 +32,7 @@
           v-if="success"
           class="success-message"
       >✅ Registered</p>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Register</button>
+      <button class="bg-blue-500 px-4 py-2 text-sm font-semibold tracking-wider text-white rounded-xl hover:bg-blue-600">Register</button>
     </form>
 
   </div>

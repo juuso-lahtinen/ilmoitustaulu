@@ -6,7 +6,7 @@
 
       <label>Post Comment</label>
       <input
-          class="px-3 py-7 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
+          class="shadow-lg px-3 py-7 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
           type="textarea"
           :class="{ 'has-error': submitting && invalidComment }"
           v-model="post.comment"
@@ -22,7 +22,7 @@
           class="success-message"
       >✅ Post successfully added</p>
       <div class="flex justify-center py-5">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded">
+      <button class="bg-blue-500 px-4 py-2 font-semibold tracking-wider text-white rounded-xl hover:bg-blue-600">
         Post
       </button>
       </div>

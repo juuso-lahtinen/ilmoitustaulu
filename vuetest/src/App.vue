@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="bg-gray-400 flex w-full">
 
+    <div class="lg:w-1/3 border-r border-lighter px-2">
     <!-- Login, Register -->
     <div class="flex justify-end py-1 mr-5">
     <login-form id="login" @login:user="loginUser" />
@@ -10,10 +11,14 @@
     <register-form id="register" @register:user="registerUser" />
     </div>
 
-    <!-- Post Form -->
-   <div class="flex justify-center text-5xl py-3"><h1>Posts</h1></div>
 
-    <div class="flex justify-center py-8">
+  </div>
+    <div class="w-full md:w-1/3 bg-gray-50">
+    <!-- Post Form -->
+   <div class="flex justify-center text-5xl py-5">
+     <h1>Posts</h1></div>
+
+    <div class="flex justify-center py-2">
 
     <post-form @add:post="addPost"/>
     </div>
@@ -26,7 +31,11 @@
           @edit:post="editPost"
       />
     </div>
+
   </div>
+    <div class="border-l w-1/3"></div>
+  </div>
+
 </template>
 
 <script>

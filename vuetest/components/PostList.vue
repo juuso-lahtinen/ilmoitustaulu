@@ -6,18 +6,16 @@
     >
       No posts
     </p>
-    <table>
-      <tbody>
-      <tr
-          :key="post.id"
-          v-for="post in posts"
-      >
-        <td class="text-xl">{{post.nickname}}</td>
-        <td>{{post.comment}}</td>
-        <td>{{post.timestamp}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <div
+        :key="post.id"
+        v-for="post in posts"
+    >
+      <div class="max-w-md px-12 bg-white shadow-lg rounded-lg my-20">
+        <h2 class="py-2 text-gray-800 text-3xl font-semibold">{{post.nickname}}</h2>
+        <p class="mt-2 py-2 text-gray-600 break-words">{{post.comment}}</p>
+        <p class="flex justify-end mt-4">{{post.timestamp}}</p>
+    </div>
+    </div>
   </div>
 </template>
 
