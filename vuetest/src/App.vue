@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-gray-700 flex w-full text-white">
+  <div class="bg-gray-700 flex w-full text-white min-h-screen">
 
-    <div class="lg:w-1/3 border-r border-gray-500 px-2">
+    <div class="w-1/3 w-full border-r border-gray-500 px-2">
     <!-- Login, Register -->
-    <div class="flex justify-end py-1 mr-5">
+    <div class="flex justify-end py-1">
     <login-form id="login" @login:user="loginUser" />
     </div>
 
@@ -13,7 +13,7 @@
 
 
   </div>
-    <div class="w-full md:w-1/3 bg-gray-700">
+    <div class="w-full w-1/3 bg-gray-700">
     <!-- Post Form -->
    <div class="flex justify-center text-5xl py-5">
      <h1>Posts</h1></div>
@@ -33,7 +33,7 @@
     </div>
 
   </div>
-    <div class="border-l border-gray-500 w-1/3"></div>
+    <div class="border-l border-gray-500 w-1/3 w-full"></div>
   </div>
 
 </template>
@@ -192,8 +192,5 @@ button:active,
 button:focus {
   background: #32a95d;
   border: 1px solid #32a95d;
-}
-.small-container {
-  max-width: 680px;
 }
 </style>
