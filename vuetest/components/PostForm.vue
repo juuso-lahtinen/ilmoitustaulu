@@ -6,13 +6,15 @@
 
       <label>Post Comment</label>
       <input
-          class="shadow-lg px-3 py-7 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
+          class="shadow-lg px-3 py-7 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
           type="textarea"
+          :maxlength="max"
           :class="{ 'has-error': submitting && invalidComment }"
           v-model="post.comment"
           @focus="clearStatus"
           placeholder="write here"
       >
+      <div class="flex justify-end mt-2 text-sm" v-text="(max - post.comment.length)"></div>
       <p
           v-if="error && submitting"
           class="error-message"
@@ -36,6 +38,7 @@ export default {
   name: 'post-form',
   data() {
     return {
+      max: 100,
       error: false,
       submitting: false,
       success: false,

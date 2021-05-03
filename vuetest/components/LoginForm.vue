@@ -6,7 +6,7 @@
 
       <label class="px-2">Username</label>
       <input
-          class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
+          class="px-2 py-1 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
 
           ref="first"
           type="text"
@@ -19,7 +19,7 @@
       <label class="px-2">Password</label>
       <input
 
-          class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
+          class="px-2 py-1 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
 
           type="password"
           :class="{ 'has-error': submitting && invalidPassword }"

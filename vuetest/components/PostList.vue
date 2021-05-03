@@ -10,10 +10,10 @@
         :key="post.id"
         v-for="post in posts"
     >
-      <div class="max-w-md px-12 bg-white shadow-lg rounded-lg my-20">
+      <div class="max-w-md px-12 bg-gray-200 shadow-2xl rounded-2xl my-5">
         <h2 class="py-2 text-gray-800 text-3xl font-semibold">{{post.nickname}}</h2>
-        <p class="mt-2 py-2 text-gray-600 break-words">{{post.comment}}</p>
-        <p class="flex justify-end mt-4">{{post.timestamp}}</p>
+        <p class="font-sans mt-2 py-2 text-gray-600 break-words">{{post.comment}}</p>
+        <p class="flex justify-end mt-4 text-black">{{post.timestamp}}</p>
     </div>
     </div>
   </div>
@@ -49,4 +49,8 @@ export default {
 </script>
 
 <style scoped>
+#post-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
 </style>
