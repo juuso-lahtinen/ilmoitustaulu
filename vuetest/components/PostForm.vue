@@ -38,7 +38,6 @@ export default {
   name: 'post-form',
   data() {
     return {
-      max: 100,
       error: false,
       submitting: false,
       success: false,
@@ -46,7 +45,8 @@ export default {
         nickname: 'tyhja',
         comment: '',
         date: new Date().toISOString().split('T')[0],
-        timeStamp: new Date().toTimeString().slice(0,8),
+        timestamp: new Date().toTimeString().slice(0,8),
+        post_id: 'postid',
       }
     }
   },
@@ -63,13 +63,14 @@ export default {
         this.error = true
         return
       }
-      this.$emit('add:post', this.post)
       this.post = {
         nickname: 'tyhja',
         comment: '',
         date: new Date().toISOString().split('T')[0],
-        timeStamp: new Date().toTimeString().slice(0,8),
+        timestamp: new Date().toTimeString().slice(0,8),
+        post_id: 'postid',
       }
+      this.$emit('add:post', this.post)
       this.success = true
       this.error = false
       this.submitting = false

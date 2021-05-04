@@ -63,6 +63,7 @@ import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from "../components/RegisterForm";
 
 let nickname = "test";
+let postid = "test";
 
 export default {
   name: "app",
@@ -71,19 +72,22 @@ export default {
     PostForm,
     LoginForm,
     RegisterForm,
+
   },
   data() {
     return {
       nickname: nickname,
+      postid: postid,
       posts: [],
-      showLogin: false,
-      showRegister: false
     }
   },
   mounted() {
     this.getPosts()
   },
   methods: {
+
+
+
     async registerUser(user) {
       try {
         const response = await fetch('http://localhost:8081/api/register', {
@@ -123,7 +127,6 @@ export default {
         console.log("response: " + data);
         if(data.includes("loginsuccess"))  {
           nickname = user.nickname;
-
           toggleElement("login");
           toggleElement("register");
         } else  {
@@ -150,6 +153,7 @@ export default {
     async addPost(post) {
       post = JSON.stringify(post);
       post = post.replace("tyhja", nickname);
+      console.log("posttest " + post);
 
       try {
         const response = await fetch('http://localhost:8081/api/POST', {
@@ -159,6 +163,8 @@ export default {
         })
 
         const data = await response.json()
+        this.postid = this.getPostID();
+        data.replace("postid", this.postid);
         this.posts = [...this.posts, data]
 
 
@@ -166,6 +172,17 @@ export default {
         console.error(error)
       }
     },
+    async getPostID() {
+
+      try {
+        const response = await fetch('http://localhost:8081/api/getpostid')
+        const data = await response.json()
+        return data;
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
     async editPost(id, updatedPost) {
       try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {

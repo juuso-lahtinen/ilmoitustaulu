@@ -50,34 +50,34 @@ app.post("/api/event", urlencodedParser, function (req, res) {
 
 
 
-    app.post("/api/POSTtest", urlencodedParser, function (req, res) {
-        console.log("Got a POST request for the homepage");
-        console.log("body: %j", req.body);
+app.post("/api/POSTtest", urlencodedParser, function (req, res) {
+    console.log("Got a POST request for the homepage");
+    console.log("body: %j", req.body);
 
-        //get JSON-object from the http-body
-        var jsonObj = req.body;
-        console.log("Arvo: " + jsonObj.nickName + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timeStamp + " " +jsonObj.counter);
-
-
-        (async () => {
-            try {
-                //insert into table user
-                var sql = "INSERT INTO user (nickname)"
-                    + " VALUES (?)";
-                await query(sql,[jsonObj.nickName]);           //insert into table post
-                sql = "INSERT INTO post (comment)"
-                    + " VALUES (?)";
-                await query(sql,[jsonObj.comment]);
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+    console.log("Arvo: " + jsonObj.nickName + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timestamp + " " +jsonObj.counter);
 
 
-                res.send("Post successful " + req.body);
-            }
-            catch (err) {
-                console.log("insertion into database failed!.." + err);
-                console.log("Database error!"+ err);
-            }
-        })()
-    });
+    (async () => {
+        try {
+            //insert into table user
+            var sql = "INSERT INTO user (nickname)"
+                + " VALUES (?)";
+            await query(sql,[jsonObj.nickName]);           //insert into table post
+            sql = "INSERT INTO post (comment)"
+                + " VALUES (?)";
+            await query(sql,[jsonObj.comment]);
+
+
+            res.send("Post successful " + req.body);
+        }
+        catch (err) {
+            console.log("insertion into database failed!.." + err);
+            console.log("Database error!"+ err);
+        }
+    })()
+});
 
 //GET method for searching the database. (This search is done with using the user's id as the search value)
 app.get("/api/GET", urlencodedParser, function (req, res) {
@@ -89,10 +89,10 @@ app.get("/api/GET", urlencodedParser, function (req, res) {
 
     //SQL-query with user's user_id. returns all values from all tables associated with the id.
     var sql = " SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id "
-    + " FROM user "
-    + " INNER JOIN post ON user.user_id = post.user_id "
-    + " INNER JOIN time ON time.post_id = post.post_id "
-    + " WHERE user.user_id = ? ";
+        + " FROM user "
+        + " INNER JOIN post ON user.user_id = post.user_id "
+        + " INNER JOIN time ON time.post_id = post.post_id "
+        + " WHERE user.user_id = ? ";
 
     (async () => {
         try {
@@ -231,7 +231,7 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
 
     //get JSON-object from the http-body
     var jsonObj = req.body;
-    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timeStamp + " " +jsonObj.counter);
+    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timestamp + " " +jsonObj.counter);
 
 
     (async () => {
@@ -260,7 +260,7 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
             //insert into table time
             sql = "INSERT INTO time (date, timestamp, post_id)"
                 + " VALUES (?,?,?)";
-            await query(sql,[jsonObj.date, jsonObj.timeStamp, postid]);
+            await query(sql,[jsonObj.date, jsonObj.timestamp, postid]);
             console.log("post test3 " + req.body)
             res.send(req.body);
         }
@@ -271,6 +271,100 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
     })()
 });
 
+//POST method for adding values into database. all tables in use (user,post,time)
+app.post("/api/POSTcomment", urlencodedParser, function (req, res) {
+    console.log("Got a POST request for the homepage");
+    console.log("body: %j", req.body);
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timestamp + " " +jsonObj.counter);
+
+
+    (async () => {
+        try {
+            let sql;
+            console.log("nickname on " + jsonObj.nickname)
+
+
+            sql = " SELECT user.user_id FROM user WHERE nickname = ? ORDER BY user.user_id DESC LIMIT 1";
+            let userid = await query(sql,[jsonObj.nickname]);
+            userid = JSON.stringify(userid);
+            userid = userid.split(':').pop().replace(/[^0-9]/g,'');
+
+
+
+            //insert into table post
+            sql = "INSERT INTO comment (comment, user_id, post_id)"
+                + " VALUES (?,?,?)";
+            await query(sql,[jsonObj.comment, userid, postid]);
+            res.send(req.body);
+
+            sql = " SELECT post.post_id FROM post ORDER BY post_id DESC LIMIT 1";
+            let postid = await query(sql);
+            postid = JSON.stringify(postid);
+            postid = postid.split(':').pop().replace(/[^0-9]/g,'');
+
+            console.log("post test3 " + req.body)
+            res.send(req.body);
+        }
+        catch (err) {
+            console.log("insertion into database failed!.." + err);
+            console.log("Database error!"+ err);
+        }
+    })()
+});
+
+app.get("/api/getpostid", urlencodedParser, function (req, res) {
+
+
+
+
+    console.log("Got a GET request for the homepage!");
+    let sql = " SELECT post.post_id FROM post ORDER BY post_id DESC LIMIT 1";
+
+    (async () => {
+        try {
+            let postid = await query(sql);
+            postid = JSON.stringify(postid);
+            postid = postid.split(':').pop().replace(/[^0-9]/g,'');
+            res.send(postid);
+
+        }
+        catch (err) {
+            console.log("Database error!"+ err);
+        }
+        finally {//conn.end();
+        }
+    })()
+});
+
+app.post("/api/getcomments", urlencodedParser, function (req, res) {
+    console.log("Got a getcomments request for the homepage");
+    console.log("body: %j", req.body);
+
+    //get JSON-object from the http-body
+    var postid = req.body;
+    console.log("saatu: " + JSON.stringify(postid));
+
+
+    //SQL-query with user's user_id. returns all values from all tables associated with the id.
+    var sql = "SELECT comment.comment FROM comment WHERE comment.post_id = ?";
+
+    (async () => {
+        try {
+            const rows = await query(sql,[postid.post_id]);
+            let string = JSON.stringify(rows);
+            console.log("lähtee: " + string);
+            res.send(string);
+        }
+        catch (err) {
+            console.log("Database error!"+ err);
+        }
+        finally {//conn.end();
+        }
+    })()
+});
 
 
 //method for deleting a user from database and all associated posts
