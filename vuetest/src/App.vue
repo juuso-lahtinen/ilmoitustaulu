@@ -1,16 +1,34 @@
 <template>
-  <div class="bg-gray-700 flex w-full text-white min-h-screen">
+  <div id="app" class="bg-gray-700 flex w-full text-white min-h-screen">
 
     <div class="w-1/3 w-full border-r border-gray-500 px-2">
-    <!-- Login, Register -->
-    <div class="flex justify-end py-1">
-    <login-form id="login" @login:user="loginUser" />
-    </div>
 
-    <div class="flex justify-end mr-5">
-    <register-form id="register" @register:user="registerUser" />
-    </div>
+    <!-- Login -->
 
+      <button class="my-1 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600 focus:outline-none focus:bg-green-500" @click="showLogin = true">Login</button>
+      <transition name="fade" appear>
+        <div class="modal-overlay" v-if="showLogin" @click="showLogin = false"></div>
+      </transition>
+      <transition name="slide" appear>
+        <div class="modal text-black" v-if="showLogin">
+          <label class="text-2xl flex justify-center">Login</label>
+          <login-form id="login" @login:user="loginUser"  />
+
+        </div>
+      </transition>
+
+      <!-- Register -->
+      <button class="my-1 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600 focus:outline-none focus:bg-green-500" @click="showRegister = true">Register</button>
+      <transition name="fade" appear>
+        <div class="modal-overlay" v-if="showRegister" @click="showRegister = false"></div>
+      </transition>
+      <transition name="slide" appear>
+        <div class="modal text-black" v-if="showRegister">
+          <label class="text-2xl flex justify-center">Register</label>
+            <register-form id="register" @register:user="registerUser"  />
+
+        </div>
+      </transition>
 
   </div>
     <div class="w-full w-1/3 bg-gray-700">
@@ -58,6 +76,8 @@ export default {
     return {
       nickname: nickname,
       posts: [],
+      showLogin: false,
+      showRegister: false
     }
   },
   mounted() {
@@ -103,6 +123,7 @@ export default {
         console.log("response: " + data);
         if(data.includes("loginsuccess"))  {
           nickname = user.nickname;
+
           toggleElement("login");
           toggleElement("register");
         } else  {
@@ -183,14 +204,52 @@ function toggleElement(element) {
 </script>
 
 <style>
-button {
-  background: #009435;
-  border: 1px solid #009435;
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 98;
+  background-color: rgba(0, 0, 0, 0.3);
 }
-button:hover,
-button:active,
-button:focus {
-  background: #32a95d;
-  border: 1px solid #32a95d;
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+
+  width: 100%;
+  max-width: 350px;
+  max-height: 240px;
+  background-color: #FFF;
+  border-radius: 16px;
+
+  padding: 25px;
 }
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform .5s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateY(-50%) translateX(100vw);
+}
+
 </style>

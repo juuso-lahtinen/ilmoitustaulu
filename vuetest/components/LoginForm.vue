@@ -6,7 +6,7 @@
 
       <label class="px-2">Username</label>
       <input
-          class="px-2 py-1 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
+          class="flex justify-start px-2 py-1 placeholder-blueGray-300 text-black text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
 
           ref="first"
           type="text"
@@ -19,7 +19,7 @@
       <label class="px-2">Password</label>
       <input
 
-          class="px-2 py-1 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
+          class="flex justify-start px-2 py-1 placeholder-blueGray-300 text-black text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1"
 
           type="password"
           :class="{ 'has-error': submitting && invalidPassword }"
@@ -30,12 +30,12 @@
       <p
           v-if="error && submitting"
           class="error-message"
-      >❗Please fill out all required fields</p>
+      >❗ Please fill out all required fields</p>
       <p
           v-if="success"
           class="success-message"
       >✅ Logged in</p>
-      <button class="bg-blue-500 px-4 py-2 text-sm font-semibold tracking-wider text-white rounded-xl hover:bg-blue-600">Login</button>
+      <button class="my-2 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600">Login</button>
     </form>
   </div>
 
