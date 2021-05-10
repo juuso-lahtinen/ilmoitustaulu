@@ -12,7 +12,7 @@
       <div class="max-w-md bg-gray-200 shadow-2xl rounded-2xl my-5">
         <h2 class="flex justify-start px-5 py-2 text-gray-800 text-3xl font-semibold mr-48">{{post.nickname}}</h2>
         <p class="flex justify-center font-sans mt-2 px-5 py-2 text-gray-600 break-words">{{post.comment}}</p>
-        <p class="flex justify-end px-3 py-2 text-black">{{post.timestamp}}</p>
+        <p class="flex justify-end px-3 py-2 text-black">{{ post.timestamp }}</p>
       </div>
     </div>
   </div>

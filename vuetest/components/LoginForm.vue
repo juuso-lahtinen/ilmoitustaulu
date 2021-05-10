@@ -35,7 +35,10 @@
           v-if="success"
           class="success-message"
       >✅ Logged in</p>
-      <button class="my-2 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600">Login</button>
+      <button
+          class="my-2 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600">
+        Login
+      </button>
     </form>
   </div>
 
@@ -85,19 +88,23 @@ export default {
       this.success = false
       this.error = false
     }
-  }}
+  }
+}
 </script>
 
 <style scoped>
 form {
   margin-bottom: 2rem;
 }
+
 [class*="-message"] {
   font-weight: 500;
 }
+
 .error-message {
   color: #d33c40;
 }
+
 .success-message {
   color: #32a95d;
 }

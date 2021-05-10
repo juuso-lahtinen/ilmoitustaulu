@@ -6,7 +6,7 @@
 
       <label>Post Comment</label>
       <input
-          class="shadow-lg px-3 py-7 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
+          class="shadow-lg py-8 px-2 placeholder-blueGray-300 text-black border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
           type="textarea"
           :maxlength="max"
           :class="{ 'has-error': submitting && invalidComment }"
@@ -46,7 +46,7 @@ export default {
         nickname: 'tyhja',
         comment: '',
         date: new Date().toISOString().split('T')[0],
-        timeStamp: new Date().toTimeString().slice(0,8),
+        timestamp: new Date().toTimeString().slice(0,8),
       }
     }
   },
@@ -68,7 +68,7 @@ export default {
         nickname: 'tyhja',
         comment: '',
         date: new Date().toISOString().split('T')[0],
-        timeStamp: new Date().toTimeString().slice(0,8),
+        timestamp: new Date().toTimeString().slice(0,8),
       }
       this.success = true
       this.error = false

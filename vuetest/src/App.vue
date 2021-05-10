@@ -3,54 +3,60 @@
 
     <div class="w-1/3 w-full border-r border-gray-500 px-2">
 
-    <!-- Login -->
+      <!-- Login -->
 
-      <button class="my-1 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600 focus:outline-none focus:bg-green-500" @click="showLogin = true">Login</button>
+      <button id="loginButton" @click="showLogin = true"
+              class="my-1 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600 focus:outline-none focus:bg-green-500">
+        Login
+      </button>
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showLogin" @click="showLogin = false"></div>
       </transition>
       <transition name="slide" appear>
         <div class="modal text-black" v-if="showLogin">
           <label class="text-2xl flex justify-center">Login</label>
-          <login-form id="login" @login:user="loginUser"  />
-
+          <login-form id="login" @login:user="loginUser"/>
         </div>
       </transition>
 
       <!-- Register -->
-      <button class="my-1 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600 focus:outline-none focus:bg-green-500" @click="showRegister = true">Register</button>
+
+      <button id="registerButton" @click="showRegister = true"
+              class="my-1 flex justify-start bg-blue-500 px-4 py-2 text-sm font-semibold text-white rounded-xl hover:bg-blue-600 focus:outline-none focus:bg-green-500">
+        Register
+      </button>
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showRegister" @click="showRegister = false"></div>
       </transition>
       <transition name="slide" appear>
         <div class="modal text-black" v-if="showRegister">
           <label class="text-2xl flex justify-center">Register</label>
-            <register-form id="register" @register:user="registerUser"  />
-
+          <register-form id="register" @register:user="registerUser"/>
         </div>
       </transition>
 
-  </div>
+    </div>
     <div class="w-full w-1/3 bg-gray-700">
-    <!-- Post Form -->
-   <div class="flex justify-center text-5xl py-5">
-     <h1>Posts</h1></div>
+      <!-- Post Form -->
+      <div class="flex justify-center text-5xl py-5">
+        <h1>Posts</h1>
+      </div>
 
-    <div class="flex justify-center py-2">
+      <div class="flex justify-center py-2">
 
-    <post-form @add:post="addPost"/>
+        <post-form @add:post="addPost"/>
+      </div>
+
+      <!-- Post list -->
+      <div class="flex justify-center">
+        <post-list
+            :posts="posts"
+            @delete:post="deletePost"
+            @edit:post="editPost"
+        />
+      </div>
+
     </div>
-
-    <!-- Post list -->
-    <div class="flex justify-center">
-      <post-list
-          :posts="posts"
-          @delete:post="deletePost"
-          @edit:post="editPost"
-      />
-    </div>
-
-  </div>
     <div class="border-l border-gray-500 w-1/3 w-full"></div>
   </div>
 
@@ -89,17 +95,22 @@ export default {
         const response = await fetch('http://localhost:8081/api/register', {
           method: 'POST',
           body: JSON.stringify(user),
-          headers: { "Content-type": "application/json; charset=UTF-8" }
+          headers: {"Content-type": "application/json; charset=UTF-8"}
         })
         let data = await response.json();
         data = JSON.stringify(data);
 
         console.log("response: " + data);
-        if(data.includes("registersuccess"))  {
+        if (data.includes("registersuccess")) {
           nickname = user.nickname;
-          toggleElement("login");
-          toggleElement("register");
-        } else  {
+
+          let hideLogin = document.getElementById("loginButton");
+          hideLogin.style.display = "none";
+
+          let hideRegister = document.getElementById("registerButton");
+          hideRegister.style.display = "none";
+
+        } else {
           window.alert("Registration failed! Username already in use");
         }
 
@@ -115,18 +126,23 @@ export default {
         const response = await fetch('http://localhost:8081/api/login', {
           method: 'POST',
           body: JSON.stringify(user),
-          headers: { "Content-type": "application/json; charset=UTF-8" }
+          headers: {"Content-type": "application/json; charset=UTF-8"}
         })
         let data = await response.json();
         data = JSON.stringify(data);
 
         console.log("response: " + data);
-        if(data.includes("loginsuccess"))  {
+        if (data.includes("loginsuccess")) {
           nickname = user.nickname;
 
-          toggleElement("login");
-          toggleElement("register");
-        } else  {
+          let hideLogin = document.getElementById("loginButton");
+          hideLogin.style.display = "none";
+
+          let hideRegister = document.getElementById("registerButton");
+          hideRegister.style.display = "none";
+
+
+        } else {
           window.alert("Login failed! User doesn't exist");
         }
 
@@ -141,6 +157,7 @@ export default {
       try {
         const response = await fetch('http://localhost:8081/api/getallposts')
         const data = await response.json()
+
         this.posts = data
         console.log("kaikki " + data)
       } catch (error) {
@@ -155,7 +172,7 @@ export default {
         const response = await fetch('http://localhost:8081/api/POST', {
           method: 'POST',
           body: post,
-          headers: { "Content-type": "application/json; charset=UTF-8" }
+          headers: {"Content-type": "application/json; charset=UTF-8"}
         })
 
         const data = await response.json()
@@ -171,7 +188,7 @@ export default {
         const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
           method: 'PUT',
           body: updatedPost,
-          headers: { "Content-type": "application/json; charset=UTF-8" }
+          headers: {"Content-type": "application/json; charset=UTF-8"}
         })
         const data = await response.json()
         this.posts = this.posts.map(post => post.id === id ? data : post)
@@ -192,14 +209,6 @@ export default {
   },
 }
 
-function toggleElement(element) {
-  let x = document.getElementById(element);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
 
 </script>
 
