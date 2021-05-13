@@ -142,6 +142,7 @@ export default {
         if(data.includes("registersuccess"))  {
           nickname = user.nickname;
           userid = user.user_id;
+          this.user = user;
         } else  {
           window.alert("Registration failed! Username already in use");
         }
