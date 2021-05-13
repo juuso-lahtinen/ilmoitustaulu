@@ -32,10 +32,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // for reading JSON
 
-//access in browser with; http://localhost:8081/commentPage
-app.get('/commentPage', function (req,res) {
-    res.sendFile(path.join(__dirname+'/HTMLtest.html'));
-});
 
 //POST method for testing database commands in Postman
 app.post("/api/event", urlencodedParser, function (req, res) {
@@ -140,6 +136,8 @@ app.get("/api/getallposts", urlencodedParser, function (req, res) {
     })()
 });
 
+
+
 function contains(arr, key, val) {
 
     for (let i = 0; i < arr.length; i++) {
@@ -148,6 +146,33 @@ function contains(arr, key, val) {
     return false;
 }
 
+
+app.get("/api/getallcomments", urlencodedParser, function (req, res) {
+    console.log("Got a GET request for the homepage!");
+    var string;
+
+    //SQL-query with user's user_id. returns all values from all tables associated with the id.
+    var sql = " SELECT user.user_id, user.nickname, comment.post_id, comment.comment, comment.user_id"
+        + " FROM user "
+        + " INNER JOIN comment ON user.user_id = comment.user_id ";
+
+
+
+
+    (async () => {
+        try {
+            const rows = await query(sql);
+            string = JSON.stringify(rows);
+            console.log(string);
+            res.send(string);
+        }
+        catch (err) {
+            console.log("Database error!"+ err);
+        }
+        finally {//conn.end();
+        }
+    })()
+});
 app.post("/api/register", urlencodedParser, function (req, res) {
     console.log("Registering");
     console.log("body: %j", req.body);
@@ -244,6 +269,7 @@ app.post("/api/POST", urlencodedParser, function (req, res) {
             let userid = await query(sql,[jsonObj.nickname]);
             userid = JSON.stringify(userid);
             userid = userid.split(':').pop().replace(/[^0-9]/g,'');
+            console.log("userid: " + userid);
 
             //insert into table post
             sql = "INSERT INTO post (comment, user_id)"
@@ -278,34 +304,14 @@ app.post("/api/POSTcomment", urlencodedParser, function (req, res) {
 
     //get JSON-object from the http-body
     var jsonObj = req.body;
-    console.log("Arvo: " + jsonObj.nickname + " " + jsonObj.date + " " + jsonObj.comment + " " + jsonObj.timestamp + " " +jsonObj.counter);
-
 
     (async () => {
         try {
             let sql;
-            console.log("nickname on " + jsonObj.nickname)
 
-
-            sql = " SELECT user.user_id FROM user WHERE nickname = ? ORDER BY user.user_id DESC LIMIT 1";
-            let userid = await query(sql,[jsonObj.nickname]);
-            userid = JSON.stringify(userid);
-            userid = userid.split(':').pop().replace(/[^0-9]/g,'');
-
-
-
-            //insert into table post
             sql = "INSERT INTO comment (comment, user_id, post_id)"
                 + " VALUES (?,?,?)";
-            await query(sql,[jsonObj.comment, userid, postid]);
-            res.send(req.body);
-
-            sql = " SELECT post.post_id FROM post ORDER BY post_id DESC LIMIT 1";
-            let postid = await query(sql);
-            postid = JSON.stringify(postid);
-            postid = postid.split(':').pop().replace(/[^0-9]/g,'');
-
-            console.log("post test3 " + req.body)
+            await query(sql,[jsonObj.comment, jsonObj.user_id, jsonObj.post_id]);
             res.send(req.body);
         }
         catch (err) {
@@ -339,6 +345,33 @@ app.get("/api/getpostid", urlencodedParser, function (req, res) {
     })()
 });
 
+app.post("/api/getloggeduser", urlencodedParser, function (req, res) {
+    console.log("Got a POST request for the homepage");
+    console.log("body: %j", req.body);
+
+    //get JSON-object from the http-body
+    var jsonObj = req.body;
+
+    let sql = "SELECT user_id FROM user WHERE nickname = '" + jsonObj.nickname + "'";
+
+    (async () => {
+        try {
+            console.log("user: " + sql);
+            let userid = await query(sql);
+            userid = JSON.stringify(userid);
+            userid = userid.split(':').pop().replace(/[^0-9]/g,'');
+            console.log("userid lähtö:" + userid);
+            res.send(userid);
+
+        }
+        catch (err) {
+            console.log("Database error!"+ err);
+        }
+        finally {//conn.end();
+        }
+    })()
+});
+
 app.post("/api/getcomments", urlencodedParser, function (req, res) {
     console.log("Got a getcomments request for the homepage");
     console.log("body: %j", req.body);
@@ -353,6 +386,7 @@ app.post("/api/getcomments", urlencodedParser, function (req, res) {
 
     (async () => {
         try {
+
             const rows = await query(sql,[postid.post_id]);
             let string = JSON.stringify(rows);
             console.log("lähtee: " + string);

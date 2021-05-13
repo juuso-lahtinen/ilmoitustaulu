@@ -5,13 +5,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="Lisätty kirjautumis- ja rekisteröintiin tarkistus, joka tarkastaa onko käyttäjänimi käytössä. Piilotetaan kirjautumis- ja rekisteröintikentät kun toiminto on suoritettu">
+    <list default="true" id="a4732c77-2103-495d-924e-2fe8d6b441ce" name="Default Changelist" comment="Lisätty post_id hakufunktio kun käyttäjä klikkaa viestiöä">
+      <change afterPath="$PROJECT_DIR$/vuetest/components/CommentForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vuetest/components/CommentList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/NODEtest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/NODEtest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/test_db_MySQL.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/test_db_MySQL.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuetest/components/PostForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/components/PostForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuetest/components/PostList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/components/PostList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuetest/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuetest/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vuetest/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +113,18 @@
       <workItem from="1620123437657" duration="11189000" />
       <workItem from="1620137428570" duration="5180000" />
       <workItem from="1620145973920" duration="1196000" />
-      <workItem from="1620148302458" duration="2248000" />
+      <workItem from="1620148302458" duration="2591000" />
+      <workItem from="1620194289561" duration="2714000" />
+      <workItem from="1620206322951" duration="2647000" />
+      <workItem from="1620280600009" duration="1789000" />
+      <workItem from="1620381705345" duration="9613000" />
+      <workItem from="1620424919125" duration="1135000" />
+      <workItem from="1620465209933" duration="5842000" />
+      <workItem from="1620492400480" duration="4548000" />
+      <workItem from="1620498893449" duration="121000" />
+      <workItem from="1620908949632" duration="244000" />
+      <workItem from="1620909205606" duration="8419000" />
+      <workItem from="1620920635346" duration="2112000" />
     </task>
     <task id="LOCAL−00001" summary="testataan committia">
       <created>1619187118222</created>
@@ -169,7 +181,13 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1619961721591</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="Lisätty post_id hakufunktio kun käyttäjä klikkaa viestiöä">
+      <created>1620151555889</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1620151555889</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +214,8 @@
     <MESSAGE value="Yritetty luoda kirjautusjärjestelmä" />
     <MESSAGE value="Korjattu virhe kommentin lähetyksessä" />
     <MESSAGE value="Lisätty kirjautumis- ja rekisteröintiin tarkistus, joka tarkastaa onko käyttäjänimi käytössä. Piilotetaan kirjautumis- ja rekisteröintikentät kun toiminto on suoritettu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lisätty kirjautumis- ja rekisteröintiin tarkistus, joka tarkastaa onko käyttäjänimi käytössä. Piilotetaan kirjautumis- ja rekisteröintikentät kun toiminto on suoritettu" />
+    <MESSAGE value="Lisätty post_id hakufunktio kun käyttäjä klikkaa viestiöä" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lisätty post_id hakufunktio kun käyttäjä klikkaa viestiöä" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1230" y="644" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619553916161">
@@ -207,30 +226,35 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="0" y="129" key="DiffContextDialog/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620047186614" />
-    <state x="949" y="518" key="FileChooserDialogImpl" timestamp="1619527126711">
+    <state x="949" y="518" key="FileChooserDialogImpl" timestamp="1620914286450">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="949" y="518" key="FileChooserDialogImpl/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619527126711" />
-    <state width="1402" height="426" key="GridCell.Tab.0.bottom" timestamp="1620151458984">
+    <state x="949" y="518" key="FileChooserDialogImpl/0.0.2560.1440@0.0.2560.1440" timestamp="1620914286450" />
+    <state width="2237" height="176" key="GridCell.Tab.0.bottom" timestamp="1620922356899">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1402" height="426" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620147178434" />
-    <state width="1402" height="426" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620151458984" />
-    <state width="1402" height="426" key="GridCell.Tab.0.center" timestamp="1620151458984">
+    <state width="1899" height="177" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620496985376" />
+    <state width="1402" height="410" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620194687005" />
+    <state width="2237" height="176" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1620922356899" />
+    <state width="2237" height="176" key="GridCell.Tab.0.center" timestamp="1620922356899">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1402" height="426" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620147178433" />
-    <state width="1402" height="426" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620151458984" />
-    <state width="1402" height="426" key="GridCell.Tab.0.left" timestamp="1620151458984">
+    <state width="1899" height="177" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620496985376" />
+    <state width="1402" height="410" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620194687005" />
+    <state width="2237" height="176" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1620922356899" />
+    <state width="2237" height="176" key="GridCell.Tab.0.left" timestamp="1620922356899">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1402" height="426" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620147178433" />
-    <state width="1402" height="426" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620151458984" />
-    <state width="1402" height="426" key="GridCell.Tab.0.right" timestamp="1620151458984">
+    <state width="1899" height="177" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620496985375" />
+    <state width="1402" height="410" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620194687005" />
+    <state width="2237" height="176" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1620922356899" />
+    <state width="2237" height="176" key="GridCell.Tab.0.right" timestamp="1620922356899">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1402" height="426" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620147178434" />
-    <state width="1402" height="426" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620151458984" />
+    <state width="1899" height="177" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620496985376" />
+    <state width="1402" height="410" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620194687005" />
+    <state width="2237" height="176" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1620922356899" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1619636649440">
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
@@ -296,15 +320,20 @@
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>
     <state x="-1459" y="542" key="SettingsEditor/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619637396101" />
-    <state x="-1125" y="763" key="Vcs.Push.Dialog.v2" timestamp="1620141959483">
-      <screen x="-1920" y="357" width="1920" height="1080" />
+    <state x="1060" y="541" key="Vcs.Push.Dialog.v2" timestamp="1620151562363">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="-1125" y="763" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1620141959483" />
-    <state x="1060" y="541" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1619961726212" />
-    <state x="-1253" y="496" width="585" height="801" key="find.popup" timestamp="1619627073475">
-      <screen x="-1920" y="357" width="1920" height="1080" />
+    <state x="1060" y="541" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.357.1920.1080@0.0.2560.1440" timestamp="1620151562363" />
+    <state x="800" y="509" width="896" height="538" key="dock-window-1" timestamp="1620910643092">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="800" y="509" width="896" height="538" key="dock-window-1/0.0.2560.1440@0.0.2560.1440" timestamp="1620910643092" />
+    <state x="889" y="185" width="780" height="1068" key="find.popup" timestamp="1620909737086">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="-1253" y="496" width="585" height="801" key="find.popup/0.0.2560.1440/-1920.357.1920.1080@-1920.357.1920.1080" timestamp="1619627073475" />
+    <state x="889" y="185" width="780" height="1068" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1620909737086" />
     <state x="-1429" y="684" key="git4idea.branch.GitSmartOperationDialog" timestamp="1620141454327">
       <screen x="-1920" y="357" width="1920" height="1080" />
     </state>

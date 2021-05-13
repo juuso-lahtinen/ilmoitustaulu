@@ -6,27 +6,29 @@
     >
       No posts
     </p>
-    <div
-        :key="post.id"
-        v-for="post in posts"
-    >
-      <div class="max-w-md px-12 bg-gray-200 shadow-2xl rounded-2xl my-5" >
+    <div :key="post.id" v-for="post in posts">
+      <div v-on:click="onClick(post.post_id)" class="max-w-md px-12 bg-gray-200 shadow-2xl rounded-2xl my-5" >
         <h2 class="py-2 text-gray-800 text-3xl font-semibold">{{post.nickname}}</h2>
         <p class="font-sans mt-2 py-2 text-gray-600 break-words">{{post.comment}}</p>
         <p class="flex justify-end mt-4 text-black">{{post.timestamp}}</p>
-        <button v-on:click="getComments(post.post_id)">asd</button>
-        <p
-            v-if="posts.length < 1"
-            class="empty-table"
-        >
-          No posts
-        </p>
-        <div
-            :key="post.id"
-            v-for="post in posts"
-        >
+        <div  id="comment-list">
+          <p
+              v-if="getCommentsByID(post.post_id).length < 1"
+              class="empty-table"
+          >
+            No comments
+          </p>
+          <div :key="comment.id" v-for="comment in getCommentsByID(post.post_id)">
+            <div class="max-w-md px-12 bg-gray-200 shadow-2xl rounded-2xl my-5" >
+              <h2 class="py-2 text-gray-800 text-3xl font-semibold">{{comment.nickname}}</h2>
+              <p class="font-sans mt-2 py-2 text-gray-600 break-words">{{comment.comment}}</p>
+            </div>
+          </div>
+          <comment-form @click="setPostID(post.post_id)" @add:comment="addComment"/>
+        </div>
     </div>
-  </div>
+
+
   </div>
   </div>
 </template>
@@ -34,58 +36,62 @@
 
 <script>
 
+import CommentList from './CommentList.vue';
+import Vue from "vue"
+import CommentForm from "./CommentForm";
+
+Vue.config.productionTip = false;
+
+Vue.component('comment-list', CommentList);
 
 export default {
-  name: 'post-list',
 
+
+  name: 'post-list',
+  components: {CommentForm},
   props: {
     posts: Array,
+    comments: Array,
+    comment: String,
+
   },
   data() {
     return {
+      post_id: String,
       editing: null,
-      comments: [],
     }
   },
 
-  mounted() {
-    this.getComments()
-  },
+
+
   methods: {
 
-    async getComments(postid) {
-      console.log("klikattu postid " + postid);
-      var obj = { post_id: postid };
-      console.log("klikattu obj " + obj);
-      try {
-        const response = await fetch('http://localhost:8081/api/getcomments', {
-          method: 'POST',
-          body: JSON.stringify(obj),
-          headers: { "Content-type": "application/json; charset=UTF-8" }
-        })
-        let data = await response.json()
-        data = JSON.stringify(data);
-        return data;
 
+    async setPostID(postid2) {
+      console.log("postid on " + postid2);
+      this.postid = postid2;
+    },
 
-      } catch (error) {
-        console.error(error)
+    async addComment(comment) {
+      comment = JSON.stringify(comment);
+      comment = comment.replace("postid",this.postid);
+
+      this.$emit('add:comment2', comment)
+      this.$forceUpdate();
+    },
+
+    getCommentsByID(postid) {
+      let results = [];
+
+      for(let i = 0; i < this.comments.length; i++){
+        if(this.comments[i].post_id === postid){
+          results.push(this.comments[i]);
+        }
       }
+      console.log(results);
+      this.comments = results;
+      this.$forceUpdate();
     },
-
-    editMode(post) {
-      this.cachedPost = Object.assign({}, post)
-      this.editing = post.id
-    },
-    cancelEdit(post) {
-      Object.assign(post, this.cachedpost)
-      this.editing = null;
-    },
-    editPost(post) {
-      if (post.nickname === '' || post.comment === '') return
-      this.$emit('edit:post', post.id, post)
-      this.editing = null
-    }
   }
 }
 </script>

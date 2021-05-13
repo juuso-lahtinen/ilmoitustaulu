@@ -1,5 +1,5 @@
 <template>
-  <div id="post-form">
+  <div id="comment-form">
     <form @submit.prevent="handleSubmit"
           class="w-full relative"
     >
@@ -10,11 +10,11 @@
           type="textarea"
           :maxlength="max"
           :class="{ 'has-error': submitting && invalidComment }"
-          v-model="post.comment"
+          v-model="comment.comment"
           @focus="clearStatus"
           placeholder="write here"
       >
-      <div class="flex justify-end mt-2 text-sm" v-text="(max - post.comment.length)"></div>
+      <div class="flex justify-end mt-2 text-sm" v-text="(max - comment.comment.length)"></div>
       <p
           v-if="error && submitting"
           class="error-message"
@@ -35,24 +35,23 @@
 
 <script>
 export default {
-  name: 'post-form',
+  name: 'comment-form',
   data() {
     return {
       max: 100,
       error: false,
       submitting: false,
       success: false,
-      post: {
-        nickname: 'tyhja',
+      comment: {
+        post_id: 'postid',
+        user_id: 'userid',
         comment: '',
-        date: new Date().toISOString().split('T')[0],
-        timestamp: new Date().toTimeString().slice(0,8),
       }
     }
   },
   computed: {
     invalidComment() {
-      return this.post.comment === ''
+      return this.comment.comment === ''
     },
   },
   methods: {
@@ -63,12 +62,14 @@ export default {
         this.error = true
         return
       }
-      this.$emit('add:post', this.post)
-      this.post = {
-        nickname: 'tyhja',
+      console.log("emitted comment: " + JSON.stringify(this.comment));
+      this.$emit('click');
+      this.$emit('add:comment', this.comment)
+
+      this.comment = {
+        user_id: 'userid',
+        post_id: 'postid',
         comment: '',
-        date: new Date().toISOString().split('T')[0],
-        timestamp: new Date().toTimeString().slice(0,8),
       }
       this.success = true
       this.error = false
