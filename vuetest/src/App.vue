@@ -44,9 +44,8 @@
       <!-- Post list -->
       <div class="flex justify-center">
         <post-list
-            :key="componentKey"
+            :key="updateKey"
             :posts="posts"
-            :comments="comments"
             @add:comment2="addComment"
         />
       </div>
@@ -80,22 +79,15 @@ export default {
       comments: [],
       showLogin: false,
       showRegister: false,
-      componentKey: 0
+      updateKey: 0
     }
   },
   mounted() {
     this.getPosts()
-    this.getComments()
   },
   methods: {
 
-    forceRerender() {
-      this.componentKey += 1;
-    },
-
     async getUserID() {
-      console.log("this. : " + JSON.stringify(this.user));
-
       try {
         const response = await fetch('http://localhost:8081/api/getloggeduser', {
           method: 'POST',
@@ -104,7 +96,6 @@ export default {
         })
 
         let data = await response.json()
-        console.log("saapunut " + data);
         this.user_id = data;
 
       } catch (error) {
@@ -114,18 +105,15 @@ export default {
 
     async addComment(comment) {
       await this.getUserID(this.user);
-      console.log("app.vue: " + comment);
       comment = comment.replace("userid", this.user_id);
-      console.log("lähetetään" + comment);
       try {
-        const response = await fetch('http://localhost:8081/api/POSTcomment', {
+        await fetch('http://localhost:8081/api/POSTcomment', {
           method: 'POST',
           body: comment,
           headers: { "Content-type": "application/json; charset=UTF-8" }
         })
-        const data = await response.json()
-        this.comments = [...this.comments, data]
-        this.forceRerender();
+        await this.getPosts()
+
       } catch (error) {
         console.error(error)
       }
@@ -149,7 +137,6 @@ export default {
         })
         let data = await response.json();
         data = JSON.stringify(data);
-        console.log("response: " + data);
         if(data.includes("registersuccess"))  {
           nickname = user.nickname;
           userid = user.user_id;
@@ -169,7 +156,6 @@ export default {
         })
         let data = await response.json();
         data = JSON.stringify(data);
-        console.log("response: " + data);
         if(data.includes("loginsuccess"))  {
           nickname = user.nickname;
           this.user = user;
@@ -180,22 +166,39 @@ export default {
         console.error(error)
       }
     },
+
+
+    nestComments(posts, comments) {
+      const mergedPosts = [...posts];
+      return mergedPosts.reduce((posts, post) => {
+        const commentsOnPost = comments.filter(({ post_id }) => post_id === post.post_id);
+        post.comments = commentsOnPost;
+        posts.push(post);
+        return posts;
+      }, []);
+    },
+
+
+
     async getPosts() {
-      try {
-        const response = await fetch('http://localhost:8081/api/getallposts')
-        const data = await response.json()
-        this.posts = data
-        console.log("kaikki " + data)
+        try {
+          await this.getComments();
+          const response = await fetch('http://localhost:8081/api/getallposts')
+          const data = await response.json()
+          this.posts = data
+          this.posts = this.nestComments(this.posts, this.comments)
+
       } catch (error) {
         console.error(error)
       }
     },
+
+
     async getComments() {
       try {
         const response = await fetch('http://localhost:8081/api/getallcomments')
         const data = await response.json()
         this.comments = data
-        console.log("kaikki kommentit" + data)
       } catch (error) {
         console.error(error)
       }
@@ -203,8 +206,6 @@ export default {
     async addPost(post) {
       post = JSON.stringify(post);
       post = post.replace("tyhja", nickname);
-      console.log("posttest " + post);
-
       try {
         const response = await fetch('http://localhost:8081/api/POST', {
           method: 'POST',
@@ -214,7 +215,7 @@ export default {
 
         const data = await response.json()
         this.posts = [...this.posts, data]
-        this.$forceUpdate();
+        this.$emit("update:key");
       } catch (error) {
         console.error(error)
       }

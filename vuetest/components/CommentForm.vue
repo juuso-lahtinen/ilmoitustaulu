@@ -62,7 +62,6 @@ export default {
         this.error = true
         return
       }
-      console.log("emitted comment: " + JSON.stringify(this.comment));
       this.$emit('click');
       this.$emit('add:comment', this.comment)
 
