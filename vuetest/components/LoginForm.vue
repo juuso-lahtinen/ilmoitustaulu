@@ -64,6 +64,11 @@ export default {
     },
   },
   methods: {
+
+
+    /**
+     * Kutsutaan kun käyttäjä painaa viestin lähetysnappulaa. Lähettää user-olion App-vueen.
+     */
     handleSubmit() {
       this.clearStatus()
       this.submitting = true

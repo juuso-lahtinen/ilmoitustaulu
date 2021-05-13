@@ -9,7 +9,6 @@
           class="shadow-lg px-3 py-7 placeholder-blueGray-300 text-black relative text-sm border border-blueGray-300 rounded outline-none focus:outline-none focus:ring-1 w-full"
           type="textarea"
           :maxlength="max"
-          :class="{ 'has-error': submitting && invalidComment }"
           v-model="comment.comment"
           @focus="clearStatus"
           placeholder="write here"
@@ -36,6 +35,7 @@
 <script>
 export default {
   name: 'comment-form',
+  props: ['post', 'postid'],
   data() {
     return {
       max: 100,
@@ -43,31 +43,29 @@ export default {
       submitting: false,
       success: false,
       comment: {
-        post_id: 'postid',
+        post: this.post,
+        post_id: this.postid,
         user_id: 'userid',
         comment: '',
       }
     }
   },
-  computed: {
-    invalidComment() {
-      return this.comment.comment === ''
-    },
-  },
+
   methods: {
+
+    /**
+     * Kutsutaan kun käyttäjä painaa kommentin lähetysnappulaa. Lähettää kommentti-olion Postlist.vueen.
+     */
     handleSubmit() {
       this.clearStatus()
       this.submitting = true
-      if (this.invalidComment) {
-        this.error = true
-        return
-      }
+
       this.$emit('click');
       this.$emit('add:comment', this.comment)
 
       this.comment = {
         user_id: 'userid',
-        post_id: 'postid',
+        post_id: this.postid,
         comment: '',
       }
       this.success = true

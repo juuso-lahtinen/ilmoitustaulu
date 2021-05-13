@@ -56,6 +56,11 @@ export default {
     },
   },
   methods: {
+
+
+    /**
+     * Kutsutaan kun käyttäjä painaa viestin lähetysnappulaa. Lähettää post-olion App-vueen.
+     */
     handleSubmit() {
       this.clearStatus()
       this.submitting = true
@@ -69,6 +74,7 @@ export default {
         comment: '',
         date: new Date().toISOString().split('T')[0],
         timestamp: new Date().toTimeString().slice(0,8),
+        post_id: Number
       }
       this.success = true
       this.error = false
@@ -79,6 +85,9 @@ export default {
       this.error = false
     }
   }}
+
+
+
 </script>
 
 <style scoped>

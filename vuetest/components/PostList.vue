@@ -11,6 +11,7 @@
         <h2 class="py-2 text-gray-800 text-3xl font-semibold">{{post.nickname}}</h2>
         <p class="font-sans mt-2 py-2 text-gray-600 break-words">{{post.comment}}</p>
         <p class="flex justify-end mt-4 text-black">{{post.timestamp}}</p>
+
         <div  id="comment-list">
           <div :key="comment.id" v-for="comment in post.comments">
             <div class="max-w-md px-12 bg-gray-200 shadow-2xl rounded-2xl my-5" >
@@ -18,7 +19,7 @@
               <p class="font-sans mt-2 py-2 text-gray-600 break-words">{{comment.comment}}</p>
             </div>
           </div>
-          <comment-form @click="setPostID(post.post_id)" @add:comment="addComment"/>
+          <comment-form :post="post" :postid="post.post_id" @click="setPostID(post.post_id)" @add:comment="addComment"/>
         </div>
     </div>
   </div>
@@ -54,7 +55,6 @@ export default {
   methods: {
 
     async setPostID(postid2) {
-      console.log(postid2);
       this.postid = postid2;
     },
 

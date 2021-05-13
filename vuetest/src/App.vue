@@ -38,13 +38,12 @@
 
       <div class="flex justify-center py-2">
 
-        <post-form @add:post="comboFunction"/>
+        <post-form @add:post="getPostID"/>
       </div>
 
       <!-- Post list -->
       <div class="flex justify-center">
         <post-list
-            :key="updateKey"
             :posts="posts"
             @add:comment2="addComment"
         />
@@ -63,6 +62,7 @@ import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from "../components/RegisterForm";
 let nickname = "test";
 let userid = "userid";
+let postid = "postid";
 export default {
   name: "app",
   components: {
@@ -75,11 +75,11 @@ export default {
     return {
       nickname: nickname,
       user_id: userid,
+      post_id: postid,
       posts: [],
       comments: [],
       showLogin: false,
       showRegister: false,
-      updateKey: 0
     }
   },
   mounted() {
@@ -87,6 +87,9 @@ export default {
   },
   methods: {
 
+    /**
+     * Asettaa kirjautuneen käyttäjän user.id:n
+     */
     async getUserID() {
       try {
         const response = await fetch('http://localhost:8081/api/getloggeduser', {
@@ -103,6 +106,10 @@ export default {
       }
     },
 
+    /**
+     * Lisää kommentin tietokantaan
+     * @oaram{comment} Lisättävä kommentti
+     */
     async addComment(comment) {
       await this.getUserID(this.user);
       comment = comment.replace("userid", this.user_id);
@@ -119,15 +126,10 @@ export default {
       }
     },
 
-
-
-    comboFunction(post) {
-      this.addPost(post);
-      this.getPostID();
-    },
-
-
-
+    /**
+     * Lisää käyttäjän tietokantaan
+     * @oaram{Object} Lisättävä käyttäjä-olio
+     */
     async registerUser(user) {
       try {
         const response = await fetch('http://localhost:8081/api/register', {
@@ -147,6 +149,11 @@ export default {
         console.error(error)
       }
     },
+
+    /**
+     * Tarkastaa, onko käyttäjää olemassa
+     * @oaram{user} Lisättävä käyttäjä-olio
+     */
     async loginUser(user) {
       try {
         const response = await fetch('http://localhost:8081/api/login', {
@@ -167,7 +174,11 @@ export default {
       }
     },
 
-
+    /**
+     * Yhdistää comment- ja post-JSON-oliot
+     * @oaram posts
+     * @oaram comments
+     */
     nestComments(posts, comments) {
       const mergedPosts = [...posts];
       return mergedPosts.reduce((posts, post) => {
@@ -179,7 +190,9 @@ export default {
     },
 
 
-
+    /**
+     * Hakee viestit
+     */
     async getPosts() {
         try {
           await this.getComments();
@@ -193,7 +206,9 @@ export default {
       }
     },
 
-
+    /**
+     * Hakee viestien kommentit
+     */
     async getComments() {
       try {
         const response = await fetch('http://localhost:8081/api/getallcomments')
@@ -203,6 +218,10 @@ export default {
         console.error(error)
       }
     },
+
+    /**
+     * Lisää viestin tietokantaan
+     */
     async addPost(post) {
       post = JSON.stringify(post);
       post = post.replace("tyhja", nickname);
@@ -214,19 +233,25 @@ export default {
         })
 
         const data = await response.json()
-        this.posts = [...this.posts, data]
-        this.$emit("update:key");
+        return data
       } catch (error) {
         console.error(error)
       }
     },
 
-    async getPostID() {
 
+    /**
+     * Kutsuu addpost-funktiota ja asettaa post-oliolle tietokannasta haetun ID:n
+     * @param post lisättävä post-olio
+     */
+    async getPostID(post) {
       try {
+        let addedPost = await this.addPost(post)
         const response = await fetch('http://localhost:8081/api/getpostid')
         let data = await response.json()
         this.postid = data;
+        addedPost.post_id = data;
+        this.posts = [...this.posts, addedPost]
       } catch (error) {
         console.error(error)
       }

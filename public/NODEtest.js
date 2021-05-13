@@ -149,8 +149,6 @@ app.post("/api/login", urlencodedParser, function (req, res) {
     //get JSON-object from the http-body
     let nickname = JSON.stringify(req.body.nickname);
     let password = JSON.stringify(req.body.password);
-    console.log("Arvo: " + nickname + " " + password);
-
 
     (async () => {
         try {

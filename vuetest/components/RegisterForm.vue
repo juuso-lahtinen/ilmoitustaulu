@@ -61,6 +61,10 @@ export default {
     },
   },
   methods: {
+
+    /**
+     * Kutsutaan kun käyttäjä painaa rekisteröitymisnappulaa. Lähettää user-olion App-vueen.
+     */
     handleSubmit() {
       this.clearStatus()
       this.submitting = true
