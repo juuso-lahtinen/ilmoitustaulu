@@ -1,4 +1,6 @@
 # ilmoitustaulu
+**NODEtest.js on pitää pyöriä jotta tietokanta toimii
+**
 Robin Haddadin, Juuso Lahtisen ja Olli Kolkin ryhmätyö Metropolian web-sovelluskehitys 1 kurssia varten.
 
 ## REST API
