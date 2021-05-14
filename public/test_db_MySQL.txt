@@ -9,6 +9,7 @@ use test_db;
 CREATE TABLE user(
     user_id int NOT NULL AUTO_INCREMENT,
     nickname varchar(25) NOT NULL,
+    password varchar(25) NOT NULL,
     PRIMARY KEY (user_id)
 );
 
@@ -37,30 +38,5 @@ CREATE TABLE time(
     post_id int,
     PRIMARY KEY (time_id),
     FOREIGN KEY (post_id) REFERENCES post(post_id)
-    FOREIGN KEY (comment_id) REFERENCES comment(comment_id)
 );
-
 -------
-below commands to run with MySQL database for searches to see if database works normally..
-
-SELECT nickname
-FROM user
-INNER JOIN post
-ON user.user_id = post.user_id
-WHERE post.user_id = 1;
-
-SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id
-FROM user
-INNER JOIN post
-ON user.user_id = post.user_id
-INNER JOIN time
-ON time.post_id = post.post_id
-WHERE user.user_id = 1;
-
-SELECT user.user_id, user.nickname, post.post_id, post.comment, post.user_id, time.time_id, time.date, time.timestamp, time.post_id
-FROM user
-INNER JOIN post
-ON user.user_id = post.user_id
-INNER JOIN time
-ON time.post_id = post.post_id
-WHERE user.nickname = 'Batman';
