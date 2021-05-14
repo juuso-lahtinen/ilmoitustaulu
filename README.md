@@ -32,3 +32,13 @@ method: ‘DELETE’
 endpoint: http://localhost:8081/api/DELETE  
 response: JSON array  
 parameters: time.post_id, post.user_id, user.user_id  
+
+method: ‘GET’  
+endpoint: http://localhost:8081/api/getallcomments  
+response: JSON array  
+parameters: user.user_id, user.nickname, comment.post_id, comment.comment, comment.user_id
+
+method: ‘POST’  
+endpoint: http://localhost:8081/api/getloggeduser  
+response: JSON array  
+parameters: user_id
